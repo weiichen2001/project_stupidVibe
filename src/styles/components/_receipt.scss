@@ -1,0 +1,127 @@
+@use '../variable/index' as *;
+@use '../function/index' as *;
+
+
+// Receipt.scss
+// 收據動畫樣式，對應 Receipt.jsx 的結構
+
+.receipt-section {
+    width: 100%;
+    height: 150vh;
+    padding: 80px 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    background-image: url("./images/receipt/pink-bg.png");
+    background-size: contain;
+}
+
+.printer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+
+    width: 800px;
+    height: 90px;
+    border-radius: 100px;
+    border: 1px solid #EFEFEF;
+    background: #E8EBEE;
+    box-shadow: 5px 5px 10px 0px rgba(136, 150, 163, 0.40), -4px -4px 10px 0px rgba(255, 255, 255, 0.40), 5px 5px 5px 0px #FFF inset, -5px -5px 10px 0px rgba(136, 150, 163, 0.25) inset;
+    // box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    // overflow: hidden;
+    // padding: 32px 16px 48px;
+    margin: 0 auto;
+
+
+
+    .printer-exit {
+        background-color: $color-charcoal;
+        border-radius: 5px;
+        width: 620px;
+        height: 34px;
+        // overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.11) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.19);
+    }
+}
+
+.receipt-paper {
+    width: 581px;
+    height: 773px;
+    padding: 10%;
+    background-image: url("./images/receipt/paper-texture.png");
+    background-size: cover;
+
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.6s ease-out;
+    font-family: $font-I;
+
+    filter: drop-shadow(-0.5px -0.5px 0px rgba(0, 0, 0, 0.05)) drop-shadow(10px 10px 21.213px rgba(0, 0, 0, 0.05)) drop-shadow(5.901px 5.901px 8.345px rgba(0, 0, 0, 0.19)) drop-shadow(2.658px 2.658px 3.759px rgba(0, 0, 0, 0.23)) drop-shadow(1.211px 1.211px 1.712px rgba(0, 0, 0, 0.25)) drop-shadow(0.445px 0.445px 0.629px rgba(0, 0, 0, 0.26));
+
+    h2 {
+        text-align: center;
+        font-size: $font-size-h2;
+        margin-bottom: 40px;
+    }
+
+    .time {
+        font-size: $font-size-s;
+        font-family: $font-E;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 35px 0;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            font-size: $font-size-s;
+            padding: 4px 0;
+
+            span {
+                font-size: $font-size-l;
+            }
+        }
+    }
+
+    .total {
+        display: flex;
+        justify-content: space-between;
+        font-size: $font-size-h2;
+        margin-top: 8px;
+    }
+
+    .thank-you {
+        text-align: center;
+        margin-top: 16px;
+        font-size: $font-size-h2;
+        font-family: $font-E;
+        letter-spacing: 1px;
+    }
+
+    .barcode {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px dashed $color-deep-gray;
+        margin: 8px 0;
+    }
+}
+
+.receipt-paper.animate {
+    transform: translateY(0);
+    opacity: 1;
+}

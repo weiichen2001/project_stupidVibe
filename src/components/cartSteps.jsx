@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 
 
-export default function CartSteps() {
+
+
+export default function CartSteps({onGetReceipt}) {
     useEffect(() => {
         const script = document.createElement("script");
         script.type = "module";
@@ -281,7 +283,7 @@ export default function CartSteps() {
                 </div>
 
                 {/* Step 5: 完成畫面  */}
-                <div className="cart-step step5 ">
+                <div className="cart-step step5 active ">
                     {/* title  */}
                     <div className="title">
                         <h2>Purchase Completed</h2>
@@ -292,7 +294,9 @@ export default function CartSteps() {
                     </div>
                     {/* 按鈕和小提醒  */}
                     <div className="btn-notice">
-                        <button className="receipt">Get Receipt</button>
+                        <button className="receipt" onClick={onGetReceipt}>
+                            Get Receipt
+                        </button>
                         <p className="notice">* Please take a screenshot and save it yourself</p>
                     </div>
                 </div>
