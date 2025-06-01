@@ -16,7 +16,7 @@ export default function CartSteps() {
                 <div className="hand"></div>
 
                 {/* Step 1: 購物車  */}
-                <div className="cart-step step1 active">
+                <div className="cart-step step1 ">
                     {/* title  */}
                     <div className="title">
                         <h2>Shopping Cart</h2>
