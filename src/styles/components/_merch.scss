@@ -6,6 +6,7 @@
 #merch {
     background-color: $color-charcoal;
     position: relative;
+    width: 100%;
 }
 
 .model {
@@ -86,8 +87,11 @@
 .cart-sticker-img {
     position: absolute;
     top: 8%;
-    left: -1.6%;
-    width: 10%;
+    left: -2%;
+    width: 12%;
+
+    background: transparent;
+    border: none;
     cursor: pointer;
     z-index: 100;
     transition: transform 0.3s;
@@ -95,17 +99,31 @@
     &:hover {
         transform: scale(1.1);
     }
+
+
 }
 
 /* 滑出購物車卡片 */
 .cart-popup {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
+    z-index: 900; // 確保蓋在商品區上
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: none;
+
+    &.slide-in {
+        animation: popup-slide-in 0.8s ease-out forwards;
+    }
+
 
     /* 手 */
     .hand {
-        background: url('../images/merch/hand.png') no-repeat;
+        background: url('./images/merch/hand.png') no-repeat;
         background-size: contain;
         width: 75%;
         height: 34%;
@@ -121,7 +139,7 @@
         /* 卡片共同設定 */
 
         position: absolute;
-        top: 0%;
+        top: 21%;
         left: 18%;
         background: url('../images/merch/cart-card.png') no-repeat center center;
         background-size: contain; // ✅ 原比例縮放、完整顯示
@@ -576,12 +594,13 @@
     /* Step 5:完成畫面 */
     .step5 {
         justify-content: space-between;
+
         .btn-notice {
             align-self: flex-end;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap:1rem;
+            gap: 1rem;
             font-family: $font-I;
             color: $color-charcoal;
 
@@ -607,41 +626,20 @@
 }
 
 
-
-
-
 .cart-step.active {
     display: flex;
+    opacity: 1;
 }
 
-// .cart-items {
-//     list-style: none;
-//     margin: 1rem 0;
-//     padding: 0;
-//     text-align: left;
-// }
+// 卡片動畫
+@keyframes popup-slide-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
 
-// .total {
-//     font-weight: bold;
-//     margin-top: 1rem;
-// }
-
-// input {
-//     display: block;
-//     width: 100%;
-//     padding: 0.5rem;
-//     margin: 0.5rem 0;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-// }
-
-// .next-btn,
-// .cart-step button {
-//     margin-top: 1rem;
-//     padding: 0.5rem 1.5rem;
-//     background: #e91e63;
-//     color: white;
-//     border: none;
-//     border-radius: 5px;
-//     cursor: pointer;
-// }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

@@ -14,7 +14,7 @@ export default function Receipt() {
     }, []);
 
     return (
-        <section className="receipt-section">
+        <section id="receipt-section">
             <div className="printer">
                 <div className="printer-exit">
                     {/* 收據本人 */}

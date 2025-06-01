@@ -14,7 +14,7 @@ export default function CartSteps({onGetReceipt}) {
     return (
         <>
             {/* 滑出購物車卡片  */}
-            <div className="cart-popup">
+            <div className="cart-popup slide-in">
                 <div className="hand"></div>
 
                 {/* Step 1: 購物車  */}

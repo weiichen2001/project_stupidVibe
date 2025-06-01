@@ -1,8 +1,11 @@
 // 商品區與模型圖 + 貼紙按鈕 + 購物車區塊（不含步驟流程）
 
-import React from "react";
+import React, { useState } from "react";
+import CartSteps from "./cartSteps";
 
-export default function MerchSection() {
+
+export default function MerchSection({ onGetReceipt }) {
+  const [showCart, setShowCart] = useState(false);
   return (
     <section id="merch">
       {/* 背景模型圖 */}
@@ -23,7 +26,11 @@ export default function MerchSection() {
       </div>
 
       {/* 左側貼紙按鈕圖（Check My Cart） */}
-      <img src="/images/merch/checkMyCart.svg" alt="Check My Cart" className="cart-sticker-img" />
+      <button onClick={() => setShowCart(true)} className="cart-sticker-img"><img src="./images/merch/checkMyCart.svg" alt="Check My Cart" /></button>
+
+      {/* 購物流程區塊（包含手與卡片） */}
+      {showCart && <CartSteps onGetReceipt={onGetReceipt} />}
+
     </section>
   );
 }

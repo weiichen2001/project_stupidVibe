@@ -12,7 +12,7 @@ function App() {
 
   const scrollToReceipt = () => {
     const section = document.getElementById("receipt");
-    if (section) section.scrollIntoView({ behavior: "smooth" });
+    section?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -20,11 +20,12 @@ function App() {
       <Header />
       <HeroSection />
       <ManualSection />
-      <MerchSection />
-      <CartSteps onGetReceipt={() => {
-        setShowReceipt(true);
-        scrollToReceipt();
-      }} />
+      <MerchSection
+        onGetReceipt={() => {
+          setShowReceipt(true);
+          scrollToReceipt();
+        }}
+      />
 
       <section id="receipt">
         {showReceipt && <Receipt />}
