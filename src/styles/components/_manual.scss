@@ -1,0 +1,235 @@
+@use '../variable/index' as *;
+@use '../reset' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
+
+.manual-section {
+    background: url('../images/manual/pink-bg.png')no-repeat center top;
+    background-size: cover;
+    background-attachment: scroll; // 確保背景會隨內容捲動
+    padding: 4rem 1rem;
+    position: relative;
+
+    /* 裝飾性說明書 */
+    .bg-deco-manual {
+        position: absolute;
+        width: 70%;
+        top: 5%;
+        left: 15%;
+
+        z-index: 0;
+    }
+
+    .manual1 {
+        transform: rotate(-15deg);
+    }
+
+    .manual2 {
+        transform: rotate(-8deg);
+    }
+
+
+
+    /* 說明書區塊 */
+    .manual-card {
+        position: relative;
+        background: $color-pink-light;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 40px 46px;
+        width: 60%;
+        margin: 0 auto;
+
+        z-index: 1;
+    }
+
+    .manual-header {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap; //RWD??
+        border: $border-s $color-charcoal;
+        padding: 15px 0 15px 15px;
+
+        .logoTitle {
+            display: flex;
+            justify-content: space-between;
+
+
+            .logo {
+                height: 72px;
+            }
+
+            .userManual {
+                width: 250px;
+                text-align: right;
+                font-family: $font-E;
+                font-size: 34px;
+                line-height: $line-h-s;
+                padding: 10px;
+                color: $color-light;
+                background-image: url(../images/manual/userManual-bg.png);
+                background-size: cover;
+            }
+
+        }
+
+
+        .subtitle {
+            font-family: $font-I;
+            font-size: 20px;
+        }
+    }
+
+    .frameOut {
+        border: $border-s $color-charcoal;
+        padding: 10px 10px 18px 10px;
+
+        .manual-steps {
+
+            border: $border-s $color-charcoal;
+            color: $color-charcoal;
+
+            .block {
+                padding: 20px 20px;
+                border: $border-s $color-charcoal;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                h3 {
+                    font-family: $font-E;
+                    font-size: 40px;
+                }
+
+                p {
+                    font-family: $font-I;
+                    font-size: 20px;
+                }
+            }
+
+            display: flex;
+
+            .left,
+            .right {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .left {
+                width: 56%;
+
+                .step1 {
+
+                    img.step1 {
+
+                        width: 100%;
+                        height: auto;
+                        margin: 0 auto;
+                    }
+                }
+
+                .step2 {
+                    height: 100%;
+
+                    img.step2 {
+                        width: 80%;
+                        height: auto;
+                        margin: 0 auto;
+                    }
+                }
+            }
+
+            .right {
+                width: 44%;
+
+                .standing {
+                    img.standing {
+                        width: 100%;
+                        height: auto;
+                        margin: 0 auto;
+                    }
+                }
+
+                .step3 {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0 auto;
+
+
+                    img.step3 {
+                        margin-top: 25px;
+                        width: 70%;
+                        height: auto;
+                    }
+
+                    p {
+                        text-align: center;
+                    }
+                }
+            }
+
+        }
+
+        .phrase {
+            margin-top: 14px;
+            font-family: $font-E;
+            font-size: $font-size-xs ;
+            text-align: center;
+        }
+    }
+
+
+    .footer-text {
+        text-align: center;
+        margin-top: 14px;
+        font-family: $font-E;
+        font-size: $font-size-s;
+    }
+
+
+    /* 貼紙設定 */
+    .sticker-container {
+        position: relative;
+    }
+
+    // 給所有貼紙的共同設定
+    .manual-sticker {
+        position: absolute;
+        display: block;
+        height: 270px;
+
+        transition: transform 0.3s ease;
+        z-index: 10;
+
+        &:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        &:active {
+            transform: scale(0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    // 貼紙個別設定
+    .buy-now {
+        width: 25%;
+
+        top: 30%;
+        left: 70px;
+    }
+
+    .decorate-now {
+        width: 20%;
+
+        bottom: 15%;
+        left: 80px;
+    }
+
+    .open-box {
+        width: 25%;
+
+        bottom: 30%;
+        right: 60px;
+    }
+}
