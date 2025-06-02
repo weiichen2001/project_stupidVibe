@@ -7,15 +7,15 @@ export default function ManualSection() {
   return (
     <section className="manual-section">
       {/* 裝飾性背景圖 */}
-      <img src="/images/manual/bg-deco-manual.png" alt="manual decoration" className="bg-deco-manual manual1" />
-      <img src="/images/manual/bg-deco-manual.png" alt="manual decoration" className="bg-deco-manual manual2" />
+      <img src="./images/manual/bg-deco-manual.png" alt="manual decoration" className="bg-deco-manual manual1" />
+      <img src="./images/manual/bg-deco-manual.png" alt="manual decoration" className="bg-deco-manual manual2" />
 
       {/* 說明卡片整塊 */}
       <div className="manual-card">
         {/* 上方區塊：Logo 與副標 */}
         <div className="manual-header">
           <div className="logoTitle">
-            <img src="/images/manual/stupidVibe-logo-b.svg" alt="Stupid Vibe logo" className="logo" />
+            <img src="./images/manual/stupidVibe-logo-b.svg" alt="Stupid Vibe logo" className="logo" />
             <div className="userManual">USER <br />MANUAL</div>
           </div>
           <p className="subtitle">Come here and prepare for my birthday party!</p>
@@ -29,7 +29,7 @@ export default function ManualSection() {
               <div className="step1 block">
                 <h3>STEP 1</h3>
                 <p>Grab your favorite birthday merch now!</p>
-                <img className="step1" src="/images/manual/step1-merch.png" alt="Merch items" />
+                <img className="step1" src="./images/manual/step1-merch.png" alt="Merch items" />
                 <p>Pick a heartfelt gift and <br />surprise today’s star!</p>
               </div>
 
@@ -37,7 +37,7 @@ export default function ManualSection() {
               <div className="step2 block">
                 <h3>STEP 2</h3>
                 <p>Build your birthday scene now!</p>
-                <img className="step2" src="/images/manual/step2-room.png" alt="Decorate scene" />
+                <img className="step2" src="./images/manual/step2-room.png" alt="Decorate scene" />
                 <p>All set and ready—get creative! <br />Decorate your cutest corner!</p>
               </div>
             </div>
@@ -45,12 +45,12 @@ export default function ManualSection() {
             <div className="right">
               {/* Hoshi 全身圖 */}
               <div className="standing block">
-                <img className="standing" src="/images/manual/hoshi-staning.png" alt="Hoshi full-body" />
+                <img className="standing" src="./images/manual/hoshi-staning.png" alt="Hoshi full-body" />
               </div>
               {/* STEP 3 */}
               <div className="step3 block">
                 <h3>STEP 3</h3>
-                <img className="step3" src="/images/manual/step3-box.jpg" alt="Unboxing box" />
+                <img className="step3" src="./images/manual/step3-box.jpg" alt="Unboxing box" />
                 <p>Unboxing the surprise!</p>
               </div>
             </div>
@@ -66,13 +66,13 @@ export default function ManualSection() {
 
       {/* 三張貼紙按鈕 */}
       <a href="#merch" className="manual-sticker buy-now">
-        <img src="/images/manual/buyNow.png" alt="go to merch zone" />
+        <img src="./images/manual/buyNow.png" alt="go to merch zone" />
       </a>
       <a href="#" className="manual-sticker decorate-now">
-        <img src="/images/manual/decorate.png" alt="decorate your room" />
+        <img src="./images/manual/decorate.png" alt="decorate your room" />
       </a>
       <a href="#openbox" className="manual-sticker open-box">
-        <img src="/images/manual/openBox.png" alt="view unboxing animation" />
+        <img src="./images/manual/openBox.png" alt="view unboxing animation" />
       </a>
     </section>
   );
