@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import Header from "./components/header";
-import HeroSection from './components/hero';
-import ManualSection from './components/manual';
-import MerchSection from './components/merch';
-import CartSteps from './components/cartSteps';
-import Receipt from './components/receipt';
+import Header from "./homepage/header";
+import HeroSection from './homepage/hero';
+import ManualSection from './homepage/manual';
+import MerchSection from './homepage/merch';
+import CartSteps from './homepage/cartSteps';
+import Receipt from './homepage/receipt';
 import './styles/style.scss';
 
 function App() {
