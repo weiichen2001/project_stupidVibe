@@ -79,7 +79,6 @@ const decoItems = {
         { id: "o4", name: "lightstick-04", src: "./images/decorate-items/others/lightstick-04.png" },
     ],
 
-
-
-
 }
+
+export default decoItems;
