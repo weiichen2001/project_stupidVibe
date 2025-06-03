@@ -1,5 +1,5 @@
 @use '../variable/index' as *;
-@use '../reset'as *;
+@use '../reset' as *;
 
 @import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
 
@@ -11,16 +11,21 @@
     position: fixed;
     top: 25%;
     right: 0;
-
     z-index: 999;
-
     display: flex;
+    transform: translateX(55%); // 初始滑出畫面外
+    transition: transform 0.3s ease;
+
+    &.open {
+        transform: translateX(0);
+        pointer-events: auto;
+    }
 
     .menu-toggle {
         width: 164px;
-        position:absolute;
-        top: 0;
-        left:0;
+        position: relative;
+        // top: 0;
+        // left:0;
         cursor: pointer;
     }
 
@@ -28,27 +33,23 @@
         width: 130px;
         height: 338px;
         position: absolute;
-        top: 29px;
-        left: 98px; 
+        top: 0;
+        right: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        justify-content: space-between;
+        // gap: 0.5rem;
         background: url('./images/menu/menu-panel-bg.png') no-repeat center;
         background-size: cover;
-        padding: 1rem 0.8rem;
+        padding: 2rem 0.8rem;
         border-radius: 20px 0 0 20px;
-        // box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-        // opacity: 0;
-        transform: translateX(20px);
-        pointer-events: none;
-        transition: all 0.3s ease-in-out;
 
         .menu-item {
-            // transition: transform 0.2s ease;
 
             &:hover {
                 transform: scale(1.05);
+                transition: transform 0.2s;
             }
 
             cursor: pointer;
@@ -57,6 +58,8 @@
             gap: 0.5rem;
             padding: 15px 12px;
             border-radius: 999px;
+            width: fit-content;
+            rotate: -11deg;
             color: $color-light;
             font-family: $font-E;
             font-size: $font-size-m;
@@ -83,16 +86,9 @@
                 background-color: $color-green;
             }
 
-            &:hover {
-                transform: scale(1.05);
-                transition: transform 0.2s;
-            }
+
         }
     }
 
-    &.open .menu-panel {
-        opacity: 1;
-        transform: translateX(0);
-        pointer-events: auto;
-    }
+
 }

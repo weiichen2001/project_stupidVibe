@@ -197,17 +197,27 @@
         position: absolute;
         display: block;
         height: 270px;
+        outline: none;
+        border: none;
 
         transition: transform 0.3s ease;
         z-index: 10;
 
         &:hover {
             transform: rotate(5deg) scale(1.05);
+            outline: none;
+            border: none;
         }
 
         &:active {
             transform: scale(0.95);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            outline: none;
+            border: none;
+        }
+
+        img {
+            outline: none;
+            border: none;
         }
     }
 
@@ -232,4 +242,6 @@
         bottom: 30%;
         right: 60px;
     }
+
+
 }

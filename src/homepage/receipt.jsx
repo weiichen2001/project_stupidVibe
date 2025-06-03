@@ -36,21 +36,21 @@ export default function Receipt() {
                         <p className="thank-you">THANK YOU</p>
                         <hr />
                         <div className="barcode"><svg xmlns="http://www.w3.org/2000/svg" width="123" height="32" viewBox="0 0 123 32" fill="none">
-                            <path d="M1 0L1 32" stroke="#383838" stroke-width="2" />
-                            <path d="M9 0L9 32" stroke="#383838" stroke-width="2" />
-                            <path d="M19 0L19 32" stroke="#383838" stroke-width="5" />
-                            <path d="M28 0L28 32" stroke="#383838" stroke-width="7" />
-                            <path d="M35 0L35 32" stroke="#383838" stroke-width="2" />
-                            <path d="M45 0L45 32" stroke="#383838" stroke-width="7" />
-                            <path d="M53 0L53 32" stroke="#383838" stroke-width="5" />
-                            <path d="M61 0L61 32" stroke="#383838" stroke-width="2" />
-                            <path d="M70 0L70 32" stroke="#383838" stroke-width="2" />
-                            <path d="M78 0L78 32" stroke="#383838" stroke-width="5" />
-                            <path d="M88 0L88 32" stroke="#383838" stroke-width="2" />
-                            <path d="M97 0L97 32" stroke="#383838" stroke-width="7" />
-                            <path d="M104 0L104 32" stroke="#383838" stroke-width="5" />
-                            <path d="M114 0L114 32" stroke="#383838" stroke-width="2" />
-                            <path d="M122 0L122 32" stroke="#383838" stroke-width="2" />
+                            <path d="M1 0L1 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M9 0L9 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M19 0L19 32" stroke="#383838" strokeWidth="5" />
+                            <path d="M28 0L28 32" stroke="#383838" strokeWidth="7" />
+                            <path d="M35 0L35 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M45 0L45 32" stroke="#383838" strokeWidth="7" />
+                            <path d="M53 0L53 32" stroke="#383838" strokeWidth="5" />
+                            <path d="M61 0L61 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M70 0L70 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M78 0L78 32" stroke="#383838" strokeWidth="5" />
+                            <path d="M88 0L88 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M97 0L97 32" stroke="#383838" strokeWidth="7" />
+                            <path d="M104 0L104 32" stroke="#383838" strokeWidth="5" />
+                            <path d="M114 0L114 32" stroke="#383838" strokeWidth="2" />
+                            <path d="M122 0L122 32" stroke="#383838" strokeWidth="2" />
                         </svg></div>
                     </div>
                 </div>

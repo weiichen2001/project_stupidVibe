@@ -2,6 +2,7 @@
 // 包含裝飾性背景圖、說明卡片、三步驟圖片與貼紙按鈕等
 
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ManualSection() {
   return (
@@ -68,9 +69,9 @@ export default function ManualSection() {
       <a href="#merch" className="manual-sticker buy-now">
         <img src="./images/manual/buyNow.png" alt="go to merch zone" />
       </a>
-      <a href="#" className="manual-sticker decorate-now">
+      <Link to="/decorate" className="manual-sticker decorate-now">
         <img src="./images/manual/decorate.png" alt="decorate your room" />
-      </a>
+      </Link>
       <a href="#openbox" className="manual-sticker open-box">
         <img src="./images/manual/openBox.png" alt="view unboxing animation" />
       </a>

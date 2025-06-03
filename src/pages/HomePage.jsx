@@ -7,7 +7,7 @@ import CartSteps from '../homepage/cartSteps';
 import Receipt from '../homepage/receipt';
 import Menu from '../homepage/menu';
 
-function HomePage() {
+function HomePage({ heroRef, merchRef, cartBtnRef }) {
   const [showReceipt, setShowReceipt] = useState(false);
 
   const scrollToReceipt = () => {
@@ -17,15 +17,22 @@ function HomePage() {
 
   return (
     <>
-      <Menu/>
-      <HeroSection />
+      <div ref={heroRef}>
+        <HeroSection />
+      </div>
+
       <ManualSection />
-      <MerchSection
-        onGetReceipt={() => {
-          setShowReceipt(true);
-          scrollToReceipt();
-        }}
-      />
+      
+      <div ref={merchRef} id='merch'>
+        <MerchSection
+          onGetReceipt={() => {
+            setShowReceipt(true);
+            scrollToReceipt();
+          }}
+          cartBtnRef={cartBtnRef}
+        />
+      </div>
+
       <section id="receipt">
         {showReceipt && <Receipt />}
       </section>

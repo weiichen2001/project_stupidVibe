@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import CartSteps from "./cartSteps";
 
 
-export default function MerchSection({ onGetReceipt }) {
+export default function MerchSection({ onGetReceipt,cartBtnRef }) {
   const [showCart, setShowCart] = useState(false);
 
   
@@ -28,7 +28,7 @@ export default function MerchSection({ onGetReceipt }) {
       </div>
 
       {/* 左側貼紙按鈕圖（Check My Cart） */}
-      <button onClick={() => setShowCart(true)} className="cart-sticker-img"><img src="./images/merch/checkMyCart.svg" alt="Check My Cart" /></button>
+      <button ref={cartBtnRef} onClick={() => setShowCart(true)} className="cart-sticker-img"><img src="./images/merch/checkMyCart.svg" alt="Check My Cart" /></button>
 
       {/* 購物流程區塊（包含手與卡片） */}
       {showCart && <CartSteps onGetReceipt={onGetReceipt} />}
