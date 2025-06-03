@@ -1,38 +1,19 @@
-import { useState } from 'react'
-import Header from "./homepage/header";
-import HeroSection from './homepage/hero';
-import ManualSection from './homepage/manual';
-import MerchSection from './homepage/merch';
-import CartSteps from './homepage/cartSteps';
-import Receipt from './homepage/receipt';
+// App.jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import HomePage from './pages/HomePage';
+import DecoratePage from './pages/DecoratePage';
 import './styles/style.scss';
 
 function App() {
-  const [showReceipt, setShowReceipt] = useState(false);
-
-  const scrollToReceipt = () => {
-    const section = document.getElementById("receipt");
-    section?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <>
-      <Header />
-      <HeroSection />
-      <ManualSection />
-      <MerchSection
-        onGetReceipt={() => {
-          setShowReceipt(true);
-          scrollToReceipt();
-        }}
-      />
-
-      <section id="receipt">
-        {showReceipt && <Receipt />}
-      </section>
-    </>
+    <BrowserRouter basename="/project_stupidVibe">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/decorate" element={<DecoratePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 
 export default App;

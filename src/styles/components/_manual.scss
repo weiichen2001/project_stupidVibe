@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
 
 .manual-section {
-    background: url('../images/manual/pink-bg.png')no-repeat center top;
+    background: url('./images/manual/pink-bg.png')no-repeat center top;
     background-size: cover;
     background-attachment: scroll; // 確保背景會隨內容捲動
     padding: 4rem 1rem;
@@ -66,7 +66,7 @@
                 line-height: $line-h-s;
                 padding: 10px;
                 color: $color-light;
-                background-image: url(../images/manual/userManual-bg.png);
+                background-image: url(./images/manual/userManual-bg.png);
                 background-size: cover;
             }
 
