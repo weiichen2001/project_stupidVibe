@@ -6,9 +6,10 @@
 .material-panel {
   position: absolute;
   bottom: 0;
-  right:100px;
+  right: 100px;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   gap: 16px;
   padding: 16px;
   background-color: $color-primary;
@@ -20,5 +21,45 @@
     grid-template-columns: repeat(2, 1fr); // 每列 4 個
     grid-template-rows: repeat(4, auto); // 共 2 列
     gap: 16px; // 元素間距（你可依需求調整）
+
+    .material-placeholder {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background-color: $color-light;
+      cursor: pointer;
+    }
   }
+
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; // ← 改這裡：固定左右位置
+    padding: 0 32px; // ← 可加一點內縮邊距讓不貼邊
+
+    button {
+      all: unset;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; // ← 固定寬度，讓 invisible 才真的佔空間
+      height: 40px;
+
+
+      img {
+        width: 35px;
+      }
+    }
+
+    .invisible {
+      visibility: hidden;
+      /* 看不到但佔空間 */
+    }
+
+  }
+
 }

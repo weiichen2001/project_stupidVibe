@@ -33,14 +33,27 @@ export default function MaterialPanel({ items, onAdd }) {
       {/* 上下頁按鈕 */}
       {totalPages > 1 && (
         <div className="pagination">
-          {page > 0 && (
-            <button onClick={() => setPage(page - 1)}>&larr;</button>
+          {page > 0 ? (
+            <button onClick={() => setPage(page - 1)}>
+              <img src="./images/decorate-icons/icon-prev.svg" alt="icon-prev" />
+            </button>
+          ) : (
+            <button className="invisible">
+            </button>
           )}
-          {page < totalPages - 1 && (
-            <button onClick={() => setPage(page + 1)}>&rarr;</button>
+
+          {page < totalPages - 1 ? (
+            <button onClick={() => setPage(page + 1)}>
+              <img src="./images/decorate-icons/icon-next.svg" alt="icon-next" />
+            </button>
+          ) : (
+            <button className="invisible">
+            </button>
           )}
         </div>
+
       )}
     </div>
   );
 }
+
