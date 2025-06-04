@@ -1,25 +1,35 @@
 export default function Toolbar({ categories, activeCategory, onSelectCategory }) {
   return (
     <div className="toolbar">
+      {/* 類別按鈕群組 */}
       {categories.map((category) => (
         <button
           key={category.id}
           className={`toolbar-btn ${activeCategory === category.id ? "active" : ""}`}
-          onClick={() => onSelectCategory(category.id)}
+          onClick={(e) => {
+            e.stopPropagation(); //避免被外部偵測到關閉
+            onSelectCategory(category.id);
+          }}
         >
           <img src={category.icon} alt={category.name} />
         </button>
       ))}
 
-      {/* reload-btn */}
-      <button className="reload-btn">
+      {/* 重新整理按鈕 */}
+      <button
+        className="reload-btn"
+        onClick={(e) => e.stopPropagation()}
+      >
         <img src="./images/decorate-icons/icon-reload.svg" alt="icon-reload" />
       </button>
-      {/* download-btn */}
-      <button className="download-btn">
+
+      {/* 下載按鈕 */}
+      <button
+        className="download-btn"
+        onClick={(e) => e.stopPropagation()}
+      >
         <img src="./images/decorate-icons/icon-download.svg" alt="icon-download" />
       </button>
-
     </div>
   );
 }

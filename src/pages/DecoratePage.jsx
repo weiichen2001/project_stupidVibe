@@ -6,26 +6,30 @@ import decoItems from "../data/decoItems";
 export default function DecoratePage() {
   const [canvasItems, setCanvasItems] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
-  const panelRef = useRef(null); // ⭐ 加上 ref 用來偵測是否點在外部
 
-  // ⭐ 點擊 panel 外部就關閉
+  const panelRef = useRef(null);
+  const toolbarRef = useRef(null); // 新增 toolbar 的 ref
+
+  // 點擊 panel + toolbar 以外區域，關閉面板
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (panelRef.current && !panelRef.current.contains(event.target)) {
+      const clickedOutsidePanel =
+        panelRef.current && !panelRef.current.contains(event.target);
+      const clickedOutsideToolbar =
+        toolbarRef.current && !toolbarRef.current.contains(event.target);
+
+      if (clickedOutsidePanel && clickedOutsideToolbar) {
         setActiveCategory(null);
       }
     };
 
-    if (activeCategory) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [activeCategory]);
+  }, []);
 
-  // 加到畫布中央的動作
+  // 將貼紙加到畫布中央（暫時固定位置）
   const handleAddToCanvas = (item) => {
     const newItem = {
       ...item,
@@ -35,7 +39,6 @@ export default function DecoratePage() {
     setCanvasItems((prev) => [...prev, newItem]);
   };
 
-  // toolbar 的 category 清單
   const categories = [
     { id: "facialExpression", name: "FacialExpression", icon: "./images/decorate-icons/icon-facial.svg" },
     { id: "accessories", name: "Accessory", icon: "./images/decorate-icons/icon-accessory.svg" },
@@ -47,19 +50,24 @@ export default function DecoratePage() {
 
   return (
     <div className="decorate-page">
-      <Toolbar
-        categories={categories}
-        activeCategory={activeCategory}
-        onSelectCategory={setActiveCategory}
-      />
+      {/* 包住 toolbar 並掛 ref */}
+      <div ref={toolbarRef}>
+        <Toolbar
+          categories={categories}
+          activeCategory={activeCategory}
+          onSelectCategory={(categoryId) => {
+            setActiveCategory((prev) => (prev === categoryId ? null : categoryId));
+          }}
+        />
+      </div>
 
-      {/* 中央畫布，Day 4 會來處理 */}
+      {/* 中央畫布區 */}
       <div className="canvas-area">這裡是畫布區</div>
 
-      {/* 點分類才出現貼紙面板，並掛 ref */}
+      {/* 貼紙面板 + 掛上 ref */}
       {activeCategory && (
         <MaterialPanel
-          ref={panelRef} // ⭐ 傳入 ref
+          ref={panelRef}
           category={activeCategory}
           onAdd={handleAddToCanvas}
           items={decoItems[activeCategory] || []}

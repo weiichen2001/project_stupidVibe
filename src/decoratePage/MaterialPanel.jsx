@@ -1,7 +1,7 @@
 import { useState, forwardRef } from "react";
 import MaterialItem from "./MaterialItem";
 
-// ⭐ 用 forwardRef 包裝這個元件，這樣父層就可以傳 ref 進來
+// forwardRef：讓父層可用 ref 偵測點擊外部關閉面板
 const MaterialPanel = forwardRef(({ items, onAdd }, ref) => {
   const ITEMS_PER_PAGE = 8;
   const [page, setPage] = useState(0);
@@ -12,7 +12,7 @@ const MaterialPanel = forwardRef(({ items, onAdd }, ref) => {
     (page + 1) * ITEMS_PER_PAGE
   );
 
-  // ⭐ 自動補足空格，讓一頁永遠顯示 8 格（有可能是空的）
+  // 自動補足空格，讓一頁永遠顯示 8 格（有可能是空的）
   const placeholders = Array.from({ length: ITEMS_PER_PAGE - currentItems.length });
 
   return (
@@ -31,23 +31,25 @@ const MaterialPanel = forwardRef(({ items, onAdd }, ref) => {
         ))}
       </div>
 
-      {/* ⭐ 上下頁按鈕 */}
+      {/* 分頁按鈕 */}
       {totalPages > 1 && (
         <div className="pagination">
+          {/* 上一頁 */}
           {page > 0 ? (
             <button onClick={() => setPage(page - 1)}>
               <img src="./images/decorate-icons/icon-prev.svg" alt="icon-prev" />
             </button>
           ) : (
-            <button className="invisible"></button>
+            <button className="invisible" />
           )}
 
+          {/* 下一頁 */}
           {page < totalPages - 1 ? (
             <button onClick={() => setPage(page + 1)}>
               <img src="./images/decorate-icons/icon-next.svg" alt="icon-next" />
             </button>
           ) : (
-            <button className="invisible"></button>
+            <button className="invisible" />
           )}
         </div>
       )}
