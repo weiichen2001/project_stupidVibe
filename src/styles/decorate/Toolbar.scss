@@ -1,0 +1,34 @@
+@use '../variable/index' as *;
+@use '../reset' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
+
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: $color-charcoal;
+    width: fit-content;
+    padding: 15px 8px;
+    border-radius: 10px;
+
+    button {
+        width: 65px;
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        border:none;
+
+        img {
+            width: 35px;
+        }
+    }
+}
+
+.reload-btn,.download-btn{
+    background-color: transparent;
+}
+
+
