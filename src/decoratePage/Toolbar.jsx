@@ -1,13 +1,16 @@
-export default function Toolbar({ categories, activeCategory, onSelectCategory }) {
+export default function Toolbar({ categories, activeCategory, onSelectCategory, buttonRefs }) {
   return (
     <div className="toolbar">
       {/* 類別按鈕群組 */}
       {categories.map((category) => (
         <button
           key={category.id}
+          ref={(el) => {
+            buttonRefs.current[category.id] = el; // ⭐ 將 DOM 存入對應分類 ID
+          }}
           className={`toolbar-btn ${activeCategory === category.id ? "active" : ""}`}
           onClick={(e) => {
-            e.stopPropagation(); //避免被外部偵測到關閉
+            e.stopPropagation(); // 避免被外部偵測到關閉
             onSelectCategory(category.id);
           }}
         >

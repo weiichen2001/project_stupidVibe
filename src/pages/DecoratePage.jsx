@@ -6,19 +6,23 @@ import decoItems from "../data/decoItems";
 export default function DecoratePage() {
   const [canvasItems, setCanvasItems] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [panelStyle, setPanelStyle] = useState({}); // ⭐ 動態樣式
 
   const panelRef = useRef(null);
-  const toolbarRef = useRef(null); // 新增 toolbar 的 ref
+  const buttonRefs = useRef({}); // ⭐ 儲存每個分類按鈕的 ref
 
-  // 點擊 panel + toolbar 以外區域，關閉面板
+  // 點擊 panel + 按鈕以外區域，關閉面板
   useEffect(() => {
     const handleClickOutside = (event) => {
       const clickedOutsidePanel =
         panelRef.current && !panelRef.current.contains(event.target);
-      const clickedOutsideToolbar =
-        toolbarRef.current && !toolbarRef.current.contains(event.target);
 
-      if (clickedOutsidePanel && clickedOutsideToolbar) {
+      const clickedOutsideAnyButton =
+        !Object.values(buttonRefs.current).some((btn) =>
+          btn?.contains(event.target)
+        );
+
+      if (clickedOutsidePanel && clickedOutsideAnyButton) {
         setActiveCategory(null);
       }
     };
@@ -28,6 +32,20 @@ export default function DecoratePage() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  // 設定面板位置
+  useEffect(() => {
+    if (activeCategory && buttonRefs.current[activeCategory]) {
+      const buttonEl = buttonRefs.current[activeCategory];
+      const rect = buttonEl.getBoundingClientRect();
+      setPanelStyle({
+        position: "absolute",
+        top: `${rect.top - 14}px`, // ⭐ 垂直置中微調（180 是半高）
+        left: `${rect.right + 8}px`, // ⭐ 貼齊右邊，加入間距
+        zIndex: 10,
+      });
+    }
+  }, [activeCategory]);
 
   // 將貼紙加到畫布中央（暫時固定位置）
   const handleAddToCanvas = (item) => {
@@ -50,27 +68,24 @@ export default function DecoratePage() {
 
   return (
     <div className="decorate-page">
-      {/* 包住 toolbar 並掛 ref */}
-      <div ref={toolbarRef}>
-        <Toolbar
-          categories={categories}
-          activeCategory={activeCategory}
-          onSelectCategory={(categoryId) => {
-            setActiveCategory((prev) => (prev === categoryId ? null : categoryId));
-          }}
-        />
-      </div>
+      <Toolbar
+        categories={categories}
+        activeCategory={activeCategory}
+        onSelectCategory={(categoryId) => {
+          setActiveCategory((prev) => (prev === categoryId ? null : categoryId));
+        }}
+        buttonRefs={buttonRefs} // ⭐ 傳入 refs
+      />
 
-      {/* 中央畫布區 */}
       <div className="canvas-area">這裡是畫布區</div>
 
-      {/* 貼紙面板 + 掛上 ref */}
       {activeCategory && (
         <MaterialPanel
           ref={panelRef}
           category={activeCategory}
           onAdd={handleAddToCanvas}
           items={decoItems[activeCategory] || []}
+          style={panelStyle} // ⭐ 傳入動態位置樣式
         />
       )}
     </div>

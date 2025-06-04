@@ -2,7 +2,7 @@ import { useState, forwardRef } from "react";
 import MaterialItem from "./MaterialItem";
 
 // forwardRef：讓父層可用 ref 偵測點擊外部關閉面板
-const MaterialPanel = forwardRef(({ items, onAdd }, ref) => {
+const MaterialPanel = forwardRef(({ items, onAdd, style }, ref) => {
   const ITEMS_PER_PAGE = 8;
   const [page, setPage] = useState(0);
 
@@ -16,7 +16,7 @@ const MaterialPanel = forwardRef(({ items, onAdd }, ref) => {
   const placeholders = Array.from({ length: ITEMS_PER_PAGE - currentItems.length });
 
   return (
-    <div className="material-panel" ref={ref}>
+    <div className="material-panel" ref={ref} style={style}>
       <div className="material-grid">
         {currentItems.map((item) => (
           <MaterialItem
