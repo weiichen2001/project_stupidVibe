@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import MaterialItem from "./MaterialItem";
 
-export default function MaterialPanel({ items, onAdd }) {
+// ⭐ 用 forwardRef 包裝這個元件，這樣父層就可以傳 ref 進來
+const MaterialPanel = forwardRef(({ items, onAdd }, ref) => {
   const ITEMS_PER_PAGE = 8;
   const [page, setPage] = useState(0);
 
@@ -11,11 +12,11 @@ export default function MaterialPanel({ items, onAdd }) {
     (page + 1) * ITEMS_PER_PAGE
   );
 
-  // 計算這一頁的空格補幾個
+  // ⭐ 自動補足空格，讓一頁永遠顯示 8 格（有可能是空的）
   const placeholders = Array.from({ length: ITEMS_PER_PAGE - currentItems.length });
 
   return (
-    <div className="material-panel">
+    <div className="material-panel" ref={ref}>
       <div className="material-grid">
         {currentItems.map((item) => (
           <MaterialItem
@@ -30,7 +31,7 @@ export default function MaterialPanel({ items, onAdd }) {
         ))}
       </div>
 
-      {/* 上下頁按鈕 */}
+      {/* ⭐ 上下頁按鈕 */}
       {totalPages > 1 && (
         <div className="pagination">
           {page > 0 ? (
@@ -38,8 +39,7 @@ export default function MaterialPanel({ items, onAdd }) {
               <img src="./images/decorate-icons/icon-prev.svg" alt="icon-prev" />
             </button>
           ) : (
-            <button className="invisible">
-            </button>
+            <button className="invisible"></button>
           )}
 
           {page < totalPages - 1 ? (
@@ -47,13 +47,12 @@ export default function MaterialPanel({ items, onAdd }) {
               <img src="./images/decorate-icons/icon-next.svg" alt="icon-next" />
             </button>
           ) : (
-            <button className="invisible">
-            </button>
+            <button className="invisible"></button>
           )}
         </div>
-
       )}
     </div>
   );
-}
+});
 
+export default MaterialPanel;
