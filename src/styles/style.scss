@@ -2,12 +2,15 @@
 @use './function/index' as *;
 @use './reset' as*;
 
-@use './components/header';
-@use './components/hero';
-@use './components/menu';
-@use './components/manual';
-@use './components/merch';
-@use './components/receipt';
+@use './homepage/header';
+@use './homepage/hero';
+@use './homepage/menu';
+@use './homepage/manual';
+@use './homepage/merch';
+@use './homepage/receipt';
+
+@use './decorate/MaterialPanel.scss';
+@use './decorate/MaterialItem.scss';
 
 
 @import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
