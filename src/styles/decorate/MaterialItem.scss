@@ -14,14 +14,26 @@
   cursor: pointer;
 
   img {
-    width: 50%;
+    width: 60%;
     height: auto;
     display: block;
     margin: 0 auto;
   }
+}
 
-  // p {
-  //   font-size: 14px;
-  //   color: #333;
-  // }
+// 為了不同分類寫不同大小，從MaterialPanel加了動態的category className
+.category-facialExpression{
+  img{
+    width: 100%;
+  }
+}
+.category-accessories{
+  img{
+    width: 100%;
+  }
+}
+.category-others{
+  img{
+    width: 45%;
+  }
 }
