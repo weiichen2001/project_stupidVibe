@@ -1,10 +1,13 @@
-import { useState, forwardRef } from "react";
+import { useState, forwardRef ,useContext } from "react";
 import MaterialItem from "./MaterialItem";
+import { LayoutContext } from "./context"; 
 
 // forwardRef：讓父層可用 ref 偵測點擊外部關閉面板
 const MaterialPanel = forwardRef(({ items, onAdd, style, category }, ref) => {
   const ITEMS_PER_PAGE = 8;
   const [page, setPage] = useState(0);
+
+  const { addItem } = useContext(LayoutContext); // 從 context 取出 addItem
 
   const totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
   const currentItems = items.slice(
@@ -15,6 +18,12 @@ const MaterialPanel = forwardRef(({ items, onAdd, style, category }, ref) => {
   // 自動補足空格，讓一頁永遠顯示 8 格（有可能是空的）
   const placeholders = Array.from({ length: ITEMS_PER_PAGE - currentItems.length });
 
+  const handleAdd = (item) => {
+  addItem(item);
+   // 強制一律用 context
+
+};
+
   return (
     <div className={`material-panel category-${category}`} ref={ref} style={style}>
       <div className="material-grid">
@@ -23,7 +32,7 @@ const MaterialPanel = forwardRef(({ items, onAdd, style, category }, ref) => {
             key={item.id}
             name={item.name}
             src={item.src}
-            onClick={() => onAdd(item)}
+            onClick={() => handleAdd(item)}
           />
         ))}
         {placeholders.map((_, i) => (

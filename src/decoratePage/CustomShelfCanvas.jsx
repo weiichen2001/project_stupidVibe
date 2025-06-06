@@ -25,11 +25,18 @@ export default function CustomShelfCanvas() {
         <button onClick={clearAll}>清除所有素材</button>
       </div>
 
-      <div className="canvas-area" ref={canvasRef} style={{ position: "relative", width: "100%", height: "600px", background: "#fefcf7" }}>
+      <div className="canvas-area" ref={canvasRef}
+        style={{
+          position: "relative", width: "100%", height: "600px", 
+          background: "#fefcf7", 
+          backgroundColor: "rgba(0, 255, 0, 0.1)", // 淺綠色背景
+          border: "1px dashed green",             // 虛線邊框
+          zIndex:"-1"
+        }}>
         {placedItems.map((item) => (
           <motion.img
             key={item.id}
-            src={item.imageSrc}
+            src={item.src}
             drag
             dragMomentum={false}
             onDragEnd={(e, info) => {

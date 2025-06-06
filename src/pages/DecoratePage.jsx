@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import MaterialPanel from "../decoratePage/MaterialPanel";
 import Toolbar from "../decoratePage/Toolbar";
 import decoItems from "../data/decoItems";
+import CustomShelfCanvas from "../decoratePage/CustomShelfCanvas";
 
 export default function DecoratePage() {
   const [canvasItems, setCanvasItems] = useState([]);
@@ -48,14 +49,14 @@ export default function DecoratePage() {
   }, [activeCategory]);
 
   // 將貼紙加到畫布中央（暫時固定位置）
-  const handleAddToCanvas = (item) => {
-    const newItem = {
-      ...item,
-      x: 200,
-      y: 200,
-    };
-    setCanvasItems((prev) => [...prev, newItem]);
-  };
+  // const handleAddToCanvas = (item) => {
+  //   const newItem = {
+  //     ...item,
+  //     x: 200,
+  //     y: 200,
+  //   };
+  //   setCanvasItems((prev) => [...prev, newItem]);
+  // };
 
   const categories = [
     { id: "facialExpression", name: "FacialExpression", icon: "./images/decorate-icons/icon-facial.svg" },
@@ -77,13 +78,13 @@ export default function DecoratePage() {
         buttonRefs={buttonRefs} // ⭐ 傳入 refs
       />
 
-      <div className="canvas-area">這裡是畫布區</div>
+      <CustomShelfCanvas/>
 
       {activeCategory && (
         <MaterialPanel
           ref={panelRef}
           category={activeCategory}
-          onAdd={handleAddToCanvas}
+          // onAdd={handleAddToCanvas}
           items={decoItems[activeCategory] || []}
           style={panelStyle} // ⭐ 傳入動態位置樣式
         />
