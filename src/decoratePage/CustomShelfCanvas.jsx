@@ -1,9 +1,11 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { LayoutContext } from "./context";
 
 export default function CustomShelfCanvas({ canvasRef }) {
-  const { placedItems, moveItem } = useContext(LayoutContext);
+  const { placedItems, moveItem, removeItem } = useContext(LayoutContext);
   const dragRefs = useRef({}); // 儲存每張貼紙的 DOM 與拖曳狀態
+  const [selectedId, setSelectedId] = useState(null);
+
 
   // 註冊滑鼠事件：拖曳中移動與結束
   useEffect(() => {
@@ -71,7 +73,14 @@ export default function CustomShelfCanvas({ canvasRef }) {
 
   return (
     <div className="canvas-wrapper">
-      <div className="canvas-area" ref={canvasRef}>
+      <div className="canvas-area"
+        ref={canvasRef}
+        onMouseDown={(e) => {
+          // 如果點的是畫布本身（而不是貼紙）
+          if (e.target === e.currentTarget) {
+            setSelectedId(null);
+          }
+        }}>
         {/* 背景角色 */}
         <figure className="hoshi-sitting">
           <img
@@ -108,7 +117,10 @@ export default function CustomShelfCanvas({ canvasRef }) {
           <div
             key={item.id}
             ref={(el) => (dragRefs.current[item.id] = el)}
-            onMouseDown={(e) => handleMouseDown(e, item)}
+            onMouseDown={(e) => {
+              handleMouseDown(e, item);
+              setSelectedId(item.id);
+            }}
             style={{
               position: "absolute",
               top: `${item.position.top}%`,
@@ -127,6 +139,34 @@ export default function CustomShelfCanvas({ canvasRef }) {
                 pointerEvents: "none", // 讓圖片不阻擋拖曳行為
               }}
             />
+            {selectedId === item.id && (
+              <button
+                onMouseDown={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dragRefs.current.dragging = null;
+                  removeItem(item.id);
+                  setSelectedId(null);
+                }}
+                style={{
+                  position: "absolute",
+                  top: "0",
+                  right: "0",
+                  background: "red",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: "20px",
+                  height: "20px",
+                  fontSize: "14px",
+                  cursor: "pointer",
+                  zIndex: 10,
+                }}
+              >
+                ×
+              </button>
+            )}
+
           </div>
         ))}
       </div>

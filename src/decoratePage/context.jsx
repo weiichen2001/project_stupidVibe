@@ -32,11 +32,17 @@ export function LayoutProvider({ children }) {
     setPlacedItems([]);
   };
 
-  // 你之後也可以加 removeItem
+  // removeItem
+  const [selectedId, setSelectedId] = useState(null);
+  const removeItem = (id) => {
+  setPlacedItems((prev) => prev.filter((item) => item.id !== id));
+};
+
+
 
   return (
     <LayoutContext.Provider
-      value={{ placedItems, addItem, moveItem, clearAll }}
+      value={{ placedItems, addItem, moveItem, clearAll,selectedId,removeItem}}
     >
       {children}
     </LayoutContext.Provider>
