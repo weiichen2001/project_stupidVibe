@@ -10,7 +10,7 @@ export default function DecoratePage() {
   const [panelStyle, setPanelStyle] = useState({}); // ⭐ 動態樣式
 
   const panelRef = useRef(null);
-  const buttonRefs = useRef({}); // ⭐ 儲存每個分類按鈕的 ref
+  const buttonRefs = useRef({}); // 儲存每個分類按鈕的 ref
 
   // 點擊 panel + 按鈕以外區域，關閉面板
   useEffect(() => {
@@ -41,22 +41,12 @@ export default function DecoratePage() {
       const rect = buttonEl.getBoundingClientRect();
       setPanelStyle({
         position: "absolute",
-        top: `${rect.top - 14}px`, // ⭐ 垂直置中微調（180 是半高）
-        left: `${rect.right + 8}px`, // ⭐ 貼齊右邊，加入間距
+        top: `${rect.top - 14}px`, // 垂直置中微調（180 是半高）
+        left: `${rect.right + 8}px`, //  貼齊右邊，加入間距
         zIndex: 10,
       });
     }
   }, [activeCategory]);
-
-  // 將貼紙加到畫布中央（暫時固定位置）
-  // const handleAddToCanvas = (item) => {
-  //   const newItem = {
-  //     ...item,
-  //     x: 200,
-  //     y: 200,
-  //   };
-  //   setCanvasItems((prev) => [...prev, newItem]);
-  // };
 
   const categories = [
     { id: "facialExpression", name: "FacialExpression", icon: "./images/decorate-icons/icon-facial.svg" },
@@ -75,7 +65,7 @@ export default function DecoratePage() {
         onSelectCategory={(categoryId) => {
           setActiveCategory((prev) => (prev === categoryId ? null : categoryId));
         }}
-        buttonRefs={buttonRefs} // ⭐ 傳入 refs
+        buttonRefs={buttonRefs} // 傳入 refs
       />
 
       <CustomShelfCanvas/>
@@ -84,9 +74,8 @@ export default function DecoratePage() {
         <MaterialPanel
           ref={panelRef}
           category={activeCategory}
-          // onAdd={handleAddToCanvas}
           items={decoItems[activeCategory] || []}
-          style={panelStyle} // ⭐ 傳入動態位置樣式
+          style={panelStyle} // 傳入動態位置樣式
         />
       )}
     </div>

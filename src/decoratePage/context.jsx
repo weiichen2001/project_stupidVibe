@@ -1,5 +1,4 @@
-// context.js
-import React, { createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 // 建立 context
 export const LayoutContext = createContext();
@@ -13,7 +12,7 @@ export function LayoutProvider({ children }) {
     const newItem = {
       ...item,
       id: Date.now(), // 簡單的唯一 ID
-      position: { top: 100, left: 100 } // 預設貼上位置
+      position: { top: "50%", left: "50%" } // 預設貼上位置
     };
     setPlacedItems((prev) => [...prev, newItem]);
   };
