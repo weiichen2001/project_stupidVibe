@@ -1,4 +1,19 @@
-export default function Toolbar({ categories, activeCategory, onSelectCategory, buttonRefs }) {
+import  { useRef,useContext } from "react";
+import { LayoutContext } from "./context";
+import html2canvas from "html2canvas";
+
+export default function Toolbar({ categories, activeCategory, onSelectCategory, buttonRefs,canvasRef }) {
+  const { clearAll } = useContext(LayoutContext);
+  const handleDownload = async () => {
+    if (!canvasRef.current) return;
+    const canvas = await html2canvas(canvasRef.current);
+    const link = document.createElement("a");
+    link.download = "my-room.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  };
+
+  
   return (
     <div className="toolbar">
       {/* 類別按鈕群組 */}
@@ -21,7 +36,9 @@ export default function Toolbar({ categories, activeCategory, onSelectCategory, 
       {/* 重新整理按鈕 */}
       <button
         className="reload-btn"
-        onClick={(e) => e.stopPropagation()}
+        // onClick={(e) => e.stopPropagation()}
+        onClick={clearAll}
+
       >
         <img src="./images/decorate-icons/icon-reload.svg" alt="icon-reload" />
       </button>
@@ -29,7 +46,8 @@ export default function Toolbar({ categories, activeCategory, onSelectCategory, 
       {/* 下載按鈕 */}
       <button
         className="download-btn"
-        onClick={(e) => e.stopPropagation()}
+        // onClick={(e) => e.stopPropagation()}
+        onClick={handleDownload}
       >
         <img src="./images/decorate-icons/icon-download.svg" alt="icon-download" />
       </button>

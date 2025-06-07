@@ -12,7 +12,8 @@ export function LayoutProvider({ children }) {
     const newItem = {
       ...item,
       id: Date.now(), // 簡單的唯一 ID
-      position: { top: "50%", left: "50%" } // 預設貼上位置
+      position: { top: 50, left: 50 } ,// 預設貼上位置
+      widthRatio: item.widthRatio
     };
     setPlacedItems((prev) => [...prev, newItem]);
   };

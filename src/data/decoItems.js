@@ -29,7 +29,12 @@ const decoItems = {
 
     // 專輯
     albums: [
-        { id: "al1", name: "album-01", src: "./images/decorate-items/albums/album-01.jpg" },
+        {
+            id: "al1",
+            name: "album-01",
+            src: "./images/decorate-items/albums/album-01.jpg",
+            widthRatio:0.08,
+        },
         { id: "al2", name: "album-02", src: "./images/decorate-items/albums/album-02.jpg" },
         { id: "al3", name: "album-03", src: "./images/decorate-items/albums/album-03.jpg" },
         { id: "al4", name: "album-04", src: "./images/decorate-items/albums/album-04.jpg" },
@@ -71,7 +76,7 @@ const decoItems = {
         { id: "p16", name: "attacca", src: "./images/decorate-items/posters/poster-16.jpg" },
     ],
 
-      //  其他
+    //  其他
     others: [
         { id: "o1", name: "lightstick-01", src: "./images/decorate-items/others/lightstick-01.png" },
         { id: "o2", name: "lightstick-02", src: "./images/decorate-items/others/lightstick-02.png" },

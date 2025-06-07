@@ -11,6 +11,8 @@ export default function DecoratePage() {
 
   const panelRef = useRef(null);
   const buttonRefs = useRef({}); // 儲存每個分類按鈕的 ref
+  const canvasRef = useRef(null);
+
 
   // 點擊 panel + 按鈕以外區域，關閉面板
   useEffect(() => {
@@ -66,9 +68,10 @@ export default function DecoratePage() {
           setActiveCategory((prev) => (prev === categoryId ? null : categoryId));
         }}
         buttonRefs={buttonRefs} // 傳入 refs
+        canvasRef={canvasRef}
       />
 
-      <CustomShelfCanvas/>
+      <CustomShelfCanvas canvasRef={canvasRef}/>
 
       {activeCategory && (
         <MaterialPanel
