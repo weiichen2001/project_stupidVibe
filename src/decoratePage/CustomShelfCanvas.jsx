@@ -77,7 +77,7 @@ export default function CustomShelfCanvas({ canvasRef }) {
         ref={canvasRef}
         onMouseDown={(e) => {
           // 如果點的是畫布本身（而不是貼紙）
-          if (e.target === e.currentTarget) {
+          if (!e.target.closest(".sticker-item")) {
             setSelectedId(null);
           }
         }}>
@@ -115,6 +115,7 @@ export default function CustomShelfCanvas({ canvasRef }) {
         {/* 渲染貼紙 */}
         {placedItems.map((item) => (
           <div
+            className="sticker-item"
             key={item.id}
             ref={(el) => (dragRefs.current[item.id] = el)}
             onMouseDown={(e) => {

@@ -40,3 +40,9 @@
         top:32%;
     }
 }
+
+.hoshi-sitting img,
+.wood-shelf img,
+.board-container img {
+  pointer-events: none;
+}
