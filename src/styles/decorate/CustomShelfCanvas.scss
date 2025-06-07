@@ -1,4 +1,46 @@
+@use '../variable/index' as *;
+@use '../reset' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
+
 .canvas-controls{
     display: flex;
     justify-content: end;
+}
+
+.canvas-wrapper{
+    width: 100%;
+    height: 100vh;
+
+    .canvas-area{
+        position: relative; //讓裡面貼紙可以定位
+        width: 100%;
+        height: 100vh;
+        background-image: url(./images/decorate-canvas/canvas-bg.svg);
+        background-size: cover;
+    }
+
+    .hoshi-sitting{
+        width: 35%;
+        position:absolute;
+        left:7%;
+        bottom:5%;
+    }
+
+    .wood-shelf{
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        gap:200px;
+        position: absolute;
+        right:4%;
+        top:48%;
+    }
+
+    .board-container{
+        width: 20%;
+        position: absolute;
+        right:30%;
+        top:32%;
+    }
 }

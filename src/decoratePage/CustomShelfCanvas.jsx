@@ -21,20 +21,23 @@ export default function CustomShelfCanvas() {
   return (
     <div className="canvas-wrapper">
       {/* 按鈕區 */}
-      <div className="canvas-controls">
+      {/* <div className="canvas-controls">
         <button onClick={handleDownload}>匯出圖片</button>
         <button onClick={clearAll}>清除所有素材</button>
-      </div>
+      </div> */}
 
     {/* 畫布本人 */}
-      <div className="canvas-area" ref={canvasRef}
-        style={{
-          position: "relative", width: "100%", height: "600px", 
-          background: "#fefcf7", 
-          backgroundColor: "rgba(0, 255, 0, 0.1)", // 淺綠色背景
-          border: "1px dashed green",             // 虛線邊框
-          zIndex:"-1"
-        }}>
+      <div className="canvas-area" ref={canvasRef}>
+        <figure className="hoshi-sitting">
+          <img src="./images/decorate-canvas/sitting-blank-face.png" alt="hoshi-sitting-blank-face" />
+        </figure>
+        <div className="wood-shelf">
+          <img src="./images/decorate-canvas/wood-01.svg" alt="wood-01" className="wood1" />
+          <img src="./images/decorate-canvas/wood-02.svg" alt="wood-02" className="wood2" />
+        </div>
+        <figure className="board-container">
+          <img src="./images/decorate-canvas/board.png" alt="" className="board" />
+        </figure>
         {placedItems.map((item) => (
           <motion.img
             key={item.id}
