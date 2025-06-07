@@ -1,81 +1,134 @@
-import React, { useContext, useRef } from "react";
-import Draggable from "react-draggable";
+import React, { useContext, useRef, useEffect } from "react";
 import { LayoutContext } from "./context";
 
 export default function CustomShelfCanvas({ canvasRef }) {
   const { placedItems, moveItem } = useContext(LayoutContext);
+  const dragRefs = useRef({}); // 儲存每張貼紙的 DOM 與拖曳狀態
 
-  // 1. 建立 nodeRefs ref 陣列
-  const nodeRefs = useRef([]);
+  // 註冊滑鼠事件：拖曳中移動與結束
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const dragging = dragRefs.current.dragging;
+      if (!dragging) return;
 
-  // 2. 每次 render 時確保 ref 長度對齊
-  if (nodeRefs.current.length !== placedItems.length) {
-    nodeRefs.current = placedItems.map((_, i) => nodeRefs.current[i] || React.createRef());
-  }
+      const { id, offsetX, offsetY } = dragging;
+      const canvas = canvasRef.current;
+      const canvasRect = canvas.getBoundingClientRect();
+      const itemEl = dragRefs.current[id];
+      if (!itemEl) return;
+
+      const itemWidth = itemEl.offsetWidth;
+      const itemHeight = itemEl.offsetHeight;
+
+      // 滑鼠相對畫布的位置
+      let mouseX = e.clientX - canvasRect.left;
+      let mouseY = e.clientY - canvasRect.top;
+
+      // 將滑鼠位置限制在「貼紙中心點」不能超出邊界
+      mouseX = Math.max(itemWidth / 2, Math.min(mouseX, canvasRect.width - itemWidth / 2));
+      mouseY = Math.max(itemHeight / 2, Math.min(mouseY, canvasRect.height - itemHeight / 2));
+
+      // 換算成百分比位置（中心點）
+      const newLeft = (mouseX / canvasRect.width) * 100;
+      const newTop = (mouseY / canvasRect.height) * 100;
+
+      moveItem(id, { top: newTop, left: newLeft });
+    };
+
+    const handleMouseUp = () => {
+      dragRefs.current.dragging = null;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [moveItem, canvasRef]);
+
+  // 滑鼠按下時啟動拖曳
+  const handleMouseDown = (e, item) => {
+    const canvas = canvasRef.current;
+    const canvasRect = canvas.getBoundingClientRect();
+
+    const mouseX = e.clientX - canvasRect.left;
+    const mouseY = e.clientY - canvasRect.top;
+
+    const itemX = (item.position.left / 100) * canvasRect.width;
+    const itemY = (item.position.top / 100) * canvasRect.height;
+
+    const offsetX = mouseX - itemX;
+    const offsetY = mouseY - itemY;
+
+    dragRefs.current.dragging = {
+      id: item.id,
+      offsetX,
+      offsetY,
+    };
+  };
 
   return (
     <div className="canvas-wrapper">
-      {/* 畫布本人 */}
       <div className="canvas-area" ref={canvasRef}>
+        {/* 背景角色 */}
         <figure className="hoshi-sitting">
-          <img src="./images/decorate-canvas/sitting-blank-face.png" alt="hoshi-sitting-blank-face" />
+          <img
+            src="./images/decorate-canvas/sitting-blank-face.png"
+            alt="hoshi-sitting-blank-face"
+          />
         </figure>
+
+        {/* 木板架 */}
         <div className="wood-shelf">
-          <img src="./images/decorate-canvas/wood-01.svg" alt="wood-01" className="wood1" />
-          <img src="./images/decorate-canvas/wood-02.svg" alt="wood-02" className="wood2" />
+          <img
+            src="./images/decorate-canvas/wood-01.svg"
+            alt="wood-01"
+            className="wood1"
+          />
+          <img
+            src="./images/decorate-canvas/wood-02.svg"
+            alt="wood-02"
+            className="wood2"
+          />
         </div>
+
+        {/* 黑板 */}
         <figure className="board-container">
-          <img src="./images/decorate-canvas/board.png" alt="board" className="board" />
+          <img
+            src="./images/decorate-canvas/board.png"
+            alt="board"
+            className="board"
+          />
         </figure>
 
         {/* 渲染貼紙 */}
-        {placedItems.map((item, index) => {
-          const ref = nodeRefs.current[index];
-
-          const canvasWidth = canvasRef.current?.offsetWidth || 0;
-          const canvasHeight = canvasRef.current?.offsetHeight || 0;
-
-          const posX = (item.position.left / 100) * canvasWidth;
-          const posY = (item.position.top / 100) * canvasHeight;
-
-          return (
-            <Draggable
-              key={item.id}
-              nodeRef={ref}
-              defaultPosition={{ x: posX, y: posY }}
-              onStop={(e, data) => {
-                const canvas = canvasRef.current;
-                if (!canvas) return;
-
-                const canvasRect = canvas.getBoundingClientRect();
-                const newLeft = (data.x + data.node.offsetWidth / 2) / canvasRect.width * 100;
-                const newTop = (data.y + data.node.offsetHeight / 2) / canvasRect.height * 100;
-
-                moveItem(item.id, { top: newTop, left: newLeft });
+        {placedItems.map((item) => (
+          <div
+            key={item.id}
+            ref={(el) => (dragRefs.current[item.id] = el)}
+            onMouseDown={(e) => handleMouseDown(e, item)}
+            style={{
+              position: "absolute",
+              top: `${item.position.top}%`,
+              left: `${item.position.left}%`,
+              width: `${item.widthRatio * 100}%`,
+              transform: "translate(-50%, -50%)",
+              cursor: "move",
+            }}
+          >
+            <img
+              src={item.src}
+              alt=""
+              style={{
+                width: "100%",
+                height: "auto",
+                pointerEvents: "none", // 讓圖片不阻擋拖曳行為
               }}
-            >
-              <div
-                ref={ref}
-                style={{
-                  position: "absolute",
-                  width: `${item.widthRatio * 100}%`,
-                }}
-              >
-                <img
-                  src={item.src}
-                  alt=""
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    cursor: "move",
-                  }}
-                />
-              </div>
-            </Draggable>
-          );
-        })}
-
-
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
