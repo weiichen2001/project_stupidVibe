@@ -112,7 +112,8 @@ export default function CustomShelfCanvas({ canvasRef }) {
             .map((item) => (
               <div
                 key={item.id}
-                className="accessory-sticker"
+                className="accessory-sticker sticker-item"
+                onMouseDown={() => setSelectedId(item.id)}
                 style={{
                   position: "absolute",
                   top: `${item.defaultPosition.top}%`,
@@ -126,24 +127,32 @@ export default function CustomShelfCanvas({ canvasRef }) {
                   alt=""
                   style={{ width: "100%", height: "auto", pointerEvents: "none" }}
                 />
-                <button
-                  onClick={() => removeItem(item.id)}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    background: "red",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "50%",
-                    width: "20px",
-                    height: "20px",
-                    fontSize: "14px",
-                    cursor: "pointer",
-                  }}
-                >
-                  ×
-                </button>
+                {selectedId === item.id && (
+                  <button
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeItem(item.id);
+                      setSelectedId(null);
+                    }}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      right: 0,
+                      background: "red",
+                      color: "white",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: "20px",
+                      height: "20px",
+                      fontSize: "14px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    ×
+                  </button>
+                )}
+
               </div>
             ))}
 
