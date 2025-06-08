@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect, useState } from "react";
 import { LayoutContext } from "./context";
 
 export default function CustomShelfCanvas({ canvasRef }) {
-  const { placedItems, moveItem, removeItem } = useContext(LayoutContext);
+  const { placedItems, moveItem, removeItem, faceSrc } = useContext(LayoutContext);
   const dragRefs = useRef({}); // 儲存每張貼紙的 DOM 與拖曳狀態
   const [selectedId, setSelectedId] = useState(null);
 
@@ -89,12 +89,24 @@ export default function CustomShelfCanvas({ canvasRef }) {
           }
         }}>
         {/* 背景角色 */}
-        <figure className="hoshi-sitting">
+        <figure className="hoshi-sitting" >
           <img
             src="./images/decorate-canvas/sitting-blank-face.png"
             alt="hoshi-sitting-blank-face"
           />
+
+          {/*加上固定臉的圖 */}
+          <div
+            className="face-sticker"
+          >
+            <img
+              src={faceSrc}
+              alt="hoshi-face"
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
         </figure>
+
 
         {/* 木板架 */}
         <div className="wood-shelf">
@@ -136,8 +148,6 @@ export default function CustomShelfCanvas({ canvasRef }) {
               width: `${item.widthRatio * 100}%`,
               transform: "translate(-50%, -50%)",
               cursor: "move",
-              border: "2px dashed red", // ✅ 加這行
-              zIndex: 999
             }}
           >
             <img
