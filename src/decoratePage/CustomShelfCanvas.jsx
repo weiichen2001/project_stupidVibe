@@ -9,6 +9,7 @@ export default function CustomShelfCanvas({ canvasRef }) {
 
   // 註冊滑鼠事件：拖曳中移動與結束
   useEffect(() => {
+
     const handleMouseMove = (e) => {
       const dragging = dragRefs.current.dragging;
       if (!dragging) return;
@@ -37,6 +38,7 @@ export default function CustomShelfCanvas({ canvasRef }) {
       moveItem(id, { top: newTop, left: newLeft });
     };
 
+
     const handleMouseUp = () => {
       dragRefs.current.dragging = null;
     };
@@ -49,6 +51,11 @@ export default function CustomShelfCanvas({ canvasRef }) {
       window.removeEventListener("mouseup", handleMouseUp);
     };
   }, [moveItem, canvasRef]);
+
+  useEffect(() => {
+    console.log("目前貼紙內容 placedItems：", placedItems);
+  }, [placedItems]);
+
 
   // 滑鼠按下時啟動拖曳
   const handleMouseDown = (e, item) => {
@@ -129,6 +136,8 @@ export default function CustomShelfCanvas({ canvasRef }) {
               width: `${item.widthRatio * 100}%`,
               transform: "translate(-50%, -50%)",
               cursor: "move",
+              border: "2px dashed red", // ✅ 加這行
+              zIndex: 999
             }}
           >
             <img

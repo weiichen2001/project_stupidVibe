@@ -2,7 +2,12 @@ const decoItems = {
 
     // 表情
     facialExpression: [
-        { id: "f1", name: "face-01", src: "./images/decorate-items/facialExpression/face-01.png" },
+        {
+            id: "f1",
+            name: "face-01",
+            src: "./images/decorate-items/facialExpression/face-01.png",
+            widthRatio:0.09,
+        },
         { id: "f2", name: "face-02", src: "./images/decorate-items/facialExpression/face-02.png" },
         { id: "f3", name: "face-03", src: "./images/decorate-items/facialExpression/face-03.png" },
         { id: "f4", name: "face-04", src: "./images/decorate-items/facialExpression/face-04.png" },
@@ -33,7 +38,7 @@ const decoItems = {
             id: "al1",
             name: "album-01",
             src: "./images/decorate-items/albums/album-01.jpg",
-            widthRatio:0.08,
+            widthRatio: 0.08,
         },
         { id: "al2", name: "album-02", src: "./images/decorate-items/albums/album-02.jpg" },
         { id: "al3", name: "album-03", src: "./images/decorate-items/albums/album-03.jpg" },
