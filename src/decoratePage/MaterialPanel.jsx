@@ -19,12 +19,20 @@ const MaterialPanel = forwardRef(({ items, style, category }, ref) => {
 
   const { addItem, updateFaceSticker } = useContext(LayoutContext); // 從 context 取出 addItem
   const handleAdd = (item) => {
-    if (category === 'facialExpression') {
+    if (category === "facialExpression") {
       updateFaceSticker(item.src);
+    } else if (category === "accessories") {
+      const fixedItem = {
+        ...item,
+        position: item.defaultPosition || { top: 50, left: 50 },
+        widthRatio: item.widthRatio || 0.08
+      };
+      addItem(fixedItem);
     } else {
       addItem(item);
     }
   };
+
 
 
   return (

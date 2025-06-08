@@ -16,9 +16,30 @@ const decoItems = {
 
     //   配件
     accessories: [
-        { id: "a1", name: "accessory-01", src: "./images/decorate-items/accessories/accessory-01.png" },
-        { id: "a2", name: "accessory-02", src: "./images/decorate-items/accessories/accessory-02.png" },
-        { id: "a3", name: "accessory-03", src: "./images/decorate-items/accessories/accessory-03.png" },
+        {
+            id: "a1",
+            name: "accessory-01",
+            src: "./images/decorate-items/accessories/accessory-01.png",
+            widthRatio: 0.68,
+            defaultPosition: { top: 40, left: 23 },
+            type: "accessory"
+        },
+        {
+            id: "a2",
+            name: "accessory-02",
+            src: "./images/decorate-items/accessories/accessory-02.png",
+            widthRatio: 0.67,
+            defaultPosition: { top: 31, left: 14 },
+            type: "accessory"
+        },
+        {
+            id: "a3",
+            name: "accessory-03",
+            src: "./images/decorate-items/accessories/accessory-03.png",
+            widthRatio: 0.24,
+            defaultPosition: { top: -10, left: 52 },
+            type: "accessory"
+        },
     ],
 
     // 2025生日周邊

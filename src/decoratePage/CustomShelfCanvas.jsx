@@ -105,6 +105,48 @@ export default function CustomShelfCanvas({ canvasRef }) {
               style={{ width: "100%", height: "auto" }}
             />
           </div>
+
+          {/* 配件貼紙：渲染在 hoshi-sitting 中，不能拖但可刪 */}
+          {placedItems
+            .filter((item) => item.type === "accessory")
+            .map((item) => (
+              <div
+                key={item.id}
+                className="accessory-sticker"
+                style={{
+                  position: "absolute",
+                  top: `${item.defaultPosition.top}%`,
+                  left: `${item.defaultPosition.left}%`,
+                  width: `${item.widthRatio * 100}%`,
+                  zIndex: 3,
+                }}
+              >
+                <img
+                  src={item.src}
+                  alt=""
+                  style={{ width: "100%", height: "auto", pointerEvents: "none" }}
+                />
+                <button
+                  onClick={() => removeItem(item.id)}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    background: "red",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "50%",
+                    width: "20px",
+                    height: "20px",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+
         </figure>
 
 
@@ -132,63 +174,64 @@ export default function CustomShelfCanvas({ canvasRef }) {
         </figure>
 
         {/* 渲染貼紙 */}
-        {placedItems.map((item) => (
-          <div
-            className="sticker-item"
-            key={item.id}
-            ref={(el) => (dragRefs.current[item.id] = el)}
-            onMouseDown={(e) => {
-              handleMouseDown(e, item);
-              setSelectedId(item.id);
-            }}
-            style={{
-              position: "absolute",
-              top: `${item.position.top}%`,
-              left: `${item.position.left}%`,
-              width: `${item.widthRatio * 100}%`,
-              transform: "translate(-50%, -50%)",
-              cursor: "move",
-            }}
-          >
-            <img
-              src={item.src}
-              alt=""
-              style={{
-                width: "100%",
-                height: "auto",
-                pointerEvents: "none", // 讓圖片不阻擋拖曳行為
+        {placedItems.filter((item) => item.type !== "accessory")
+          .map((item) => (
+            <div
+              className="sticker-item"
+              key={item.id}
+              ref={(el) => (dragRefs.current[item.id] = el)}
+              onMouseDown={(e) => {
+                handleMouseDown(e, item);
+                setSelectedId(item.id);
               }}
-            />
-            {selectedId === item.id && (
-              <button
-                onMouseDown={(e) => e.stopPropagation()}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dragRefs.current.dragging = null;
-                  removeItem(item.id);
-                  setSelectedId(null);
-                }}
+              style={{
+                position: "absolute",
+                top: `${item.position.top}%`,
+                left: `${item.position.left}%`,
+                width: `${item.widthRatio * 100}%`,
+                transform: "translate(-50%, -50%)",
+                cursor: "move",
+              }}
+            >
+              <img
+                src={item.src}
+                alt=""
                 style={{
-                  position: "absolute",
-                  top: "0",
-                  right: "0",
-                  background: "red",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "50%",
-                  width: "20px",
-                  height: "20px",
-                  fontSize: "14px",
-                  cursor: "pointer",
-                  zIndex: 10,
+                  width: "100%",
+                  height: "auto",
+                  pointerEvents: "none", // 讓圖片不阻擋拖曳行為
                 }}
-              >
-                ×
-              </button>
-            )}
+              />
+              {selectedId === item.id && (
+                <button
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    dragRefs.current.dragging = null;
+                    removeItem(item.id);
+                    setSelectedId(null);
+                  }}
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    right: "0",
+                    background: "red",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "50%",
+                    width: "20px",
+                    height: "20px",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    zIndex: 10,
+                  }}
+                >
+                  ×
+                </button>
+              )}
 
-          </div>
-        ))}
+            </div>
+          ))}
       </div>
     </div>
   );
