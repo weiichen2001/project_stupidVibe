@@ -44,12 +44,108 @@ const decoItems = {
 
     // 2025生日周邊
     birthday: [
-        { id: "b1", name: "merch-01", src: "./images/decorate-items/birthday/merch-01.png" },
-        { id: "b2", name: "merch-02", src: "./images/decorate-items/birthday/merch-02.png" },
-        { id: "b3", name: "merch-03", src: "./images/decorate-items/birthday/merch-03.png" },
-        { id: "b4", name: "merch-04", src: "./images/decorate-items/birthday/merch-04.png" },
-        { id: "b5", name: "merch-05", src: "./images/decorate-items/birthday/merch-05.png" },
-        { id: "b6", name: "merch-06", src: "./images/decorate-items/birthday/merch-06.png" },
+        {
+            id: "b1",
+            name: "acstand",
+            src: "./images/decorate-items/birthday/acstand.png",
+            widthRatio: 0.06,
+        },
+        {
+            id: "b2",
+            name: "badge1",
+            src: "./images/decorate-items/birthday/badge1.png",
+            widthRatio: 0.039,
+        },
+        {
+            id: "b3",
+            name: "badge2",
+            src: "./images/decorate-items/birthday/badge2.png",
+            widthRatio: 0.039,
+        },
+        {
+            id: "b4",
+            name: "handfan",
+            src: "./images/decorate-items/birthday/handfan.png",
+            widthRatio: 0.16,
+        },
+        {
+            id: "b5",
+            name: "postcard",
+            src: "./images/decorate-items/birthday/postcard.png",
+            widthRatio: 0.08,
+        },
+        {
+            id: "b6",
+            name: "poster",
+            src: "./images/decorate-items/birthday/poster.png",
+            widthRatio: 0.2,
+        },
+        {
+            id: "b7",
+            name: "photocard-01",
+            src: "./images/decorate-items/birthday/photocard-01.png",
+            widthRatio: 0.035,
+        },
+        {
+            id: "b8",
+            name: "photocard-02",
+            src: "./images/decorate-items/birthday/photocard-02.png",
+            widthRatio: 0.035,
+        },
+        {
+            id: "b9",
+            name: "photocard-03",
+            src: "./images/decorate-items/birthday/photocard-03.png",
+            widthRatio: 0.035,
+        },
+        {
+            id: "b10",
+            name: "photocard-04",
+            src: "./images/decorate-items/birthday/photocard-04.png",
+            widthRatio: 0.035,
+        },
+        {
+            id: "b11",
+            name: "sticker-01",
+            src: "./images/decorate-items/birthday/sticker-01.png",
+            widthRatio: 0.034,
+        },
+        {
+            id: "b12",
+            name: "sticker-02",
+            src: "./images/decorate-items/birthday/sticker-02.png",
+            widthRatio: 0.03,
+        },
+        {
+            id: "b13",
+            name: "sticker-03",
+            src: "./images/decorate-items/birthday/sticker-03.png",
+            widthRatio: 0.03,
+        },
+        {
+            id: "b14",
+            name: "sticker-04",
+            src: "./images/decorate-items/birthday/sticker-04.png",
+            widthRatio: 0.03,
+        },
+        {
+            id: "b15",
+            name: "sticker-05",
+            src: "./images/decorate-items/birthday/sticker-05.png",
+            widthRatio: 0.02,
+        },
+        {
+            id: "b16",
+            name: "sticker-06",
+            src: "./images/decorate-items/birthday/sticker-06.png",
+            widthRatio: 0.03,
+        },
+        {
+            id: "b17",
+            name: "sticker-07",
+            src: "./images/decorate-items/birthday/sticker-07.png",
+            widthRatio: 0.03,
+        },
     ],
 
     // 專輯
