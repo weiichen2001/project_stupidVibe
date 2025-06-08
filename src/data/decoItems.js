@@ -6,7 +6,6 @@ const decoItems = {
             id: "f1",
             name: "face-01",
             src: "./images/decorate-items/facialExpression/face-01.png",
-            widthRatio:0.09,
         },
         { id: "f2", name: "face-02", src: "./images/decorate-items/facialExpression/face-02.png" },
         { id: "f3", name: "face-03", src: "./images/decorate-items/facialExpression/face-03.png" },

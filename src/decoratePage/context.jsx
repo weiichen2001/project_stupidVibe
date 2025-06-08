@@ -41,7 +41,7 @@ export function LayoutProvider({ children }) {
     setPlacedItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // ✅ 換臉函式
+  // 換臉函式
   const updateFaceSticker = (newSrc) => {
     setFaceSrc(newSrc);
   };
