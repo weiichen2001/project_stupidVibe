@@ -44,7 +44,7 @@ export default function MerchSection({ onGetReceipt, cartBtnRef }) {
         {merchItems.map((item) => (
           <div
             key={item.id}
-            className="merch-with-card"
+            className={`merch-with-card float-${item.cardFloat || "right"}`}
             style={{ position: "absolute", ...item.style }}
             onMouseEnter={() => setHoveredId(item.id)}
             onMouseLeave={() => {
@@ -59,37 +59,37 @@ export default function MerchSection({ onGetReceipt, cartBtnRef }) {
             {/* 如果 hover 到的是這張商品或其卡片，就顯示卡片 */}
 
             {(hoveredId === item.id) && (
-              <div
-                className="item-card"
-                style={item.card.cardPosition}
+              <div className="item-card-wrapper"
                 onMouseEnter={() => setHoveredId(item.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                <img src="./images/merch/hover-card.png" className="card-bg" alt="card bg" />
-                <div className="card-content">
-                  <h3>{item.card.name}</h3>
-                  <p>Product Dimensions : {item.card.size}</p>
-                  <p>Material : {item.card.material}</p>
-                  <p className="desc">{item.card.desc}</p>
-                  {/* 下面一列 */}
-                  <div className="bottom-row">
-                    <p className="price">USD  {item.card.price}</p>
-                    {/* 數量增減按鈕 */}
-                    <div className="numCount">
-                      <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
-                      <div className="num">02</div>
-                      <img src="./images/merch/icon/minus-icon.svg" alt="icon-minus" className="minus" />
-                    </div>
-                    {/* 右側按鈕 */}
-                    <div className="btn-all">
-                      <button className="addCart">
-                        <span>Add to cart</span>
-                        <img src="./images/merch/icon/shopping-cart-icon.svg" alt="" className="cart" />
-                      </button>
-                      <button className="checkOut">
-                        <span>Checkout</span>
-                        <img src="./images/merch/icon/payment-icon.svg" alt="" className="cart" />
-                      </button>
+                <div className="item-card" >
+                  <img src="./images/merch/hover-card.png" className="card-bg" alt="card bg" />
+                  <div className="card-content">
+                    <h3>{item.card.name}</h3>
+                    <p>Product Dimensions : {item.card.size}</p>
+                    <p>Material : {item.card.material}</p>
+                    <p className="desc">{item.card.desc}</p>
+                    {/* 下面一列 */}
+                    <div className="bottom-row">
+                      <p className="price">USD  {item.card.price}</p>
+                      {/* 數量增減按鈕 */}
+                      <div className="numCount">
+                        <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
+                        <div className="num">02</div>
+                        <img src="./images/merch/icon/minus-icon.svg" alt="icon-minus" className="minus" />
+                      </div>
+                      {/* 右側按鈕 */}
+                      <div className="btn-all">
+                        <button className="addCart">
+                          <span>Add to cart</span>
+                          <img src="./images/merch/icon/shopping-cart-icon.svg" alt="" className="cart" />
+                        </button>
+                        <button className="checkOut">
+                          <span>Checkout</span>
+                          <img src="./images/merch/icon/payment-icon.svg" alt="" className="cart" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
