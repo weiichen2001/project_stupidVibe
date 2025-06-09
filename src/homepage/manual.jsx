@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 export default function ManualSection() {
   return (
     <section className="manual-section">
+
+      {/* 粉色背景 */}
+      <img src="./images/manual/pink-bg.png" className="pibk-bg" alt="pink-bg" />
+
       {/* 裝飾性背景圖 */}
       <img src="./images/manual/bg-deco-manual.png" alt="manual decoration" className="bg-deco-manual manual1" />
       <img src="./images/manual/bg-deco-manual.png" alt="manual decoration" className="bg-deco-manual manual2" />
