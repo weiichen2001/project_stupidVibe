@@ -21,8 +21,10 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
         <HeroSection />
       </div>
 
-      <ManualSection />
-      
+      <section id='manual'>
+        <ManualSection />
+      </section>
+
       <div ref={merchRef} id='merch'>
         <MerchSection
           onGetReceipt={() => {

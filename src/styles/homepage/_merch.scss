@@ -7,6 +7,8 @@
     background-color: $color-charcoal;
     position: relative;
     width: 100%;
+    z-index: 1; //為了在粉色背景底下
+
 }
 
 .model {
@@ -93,7 +95,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    z-index: 100;
+    z-index: 1000;
     transition: transform 0.3s;
 
     &:hover {
@@ -120,10 +122,14 @@
         animation: popup-slide-in 0.8s ease-out forwards;
     }
 
+    &.slide-out {
+        animation: popup-slide-out 0.8s ease-out forwards;
+    }
+
 
     /* 手 */
     .hand {
-        background: url('./images/merch/hand.png') no-repeat;
+        background: url('./public/images/merch/hand.png') no-repeat;
         background-size: contain;
         width: 75%;
         height: 34%;
@@ -132,6 +138,7 @@
         left: -36%;
 
         z-index: 999;
+        pointer-events: none;
     }
 
     /* 步驟卡片 */
@@ -141,10 +148,10 @@
         position: absolute;
         top: 21%;
         left: 18%;
-        background: url('./images/merch/cart-card.png') no-repeat center center;
-        background-size: contain; // ✅ 原比例縮放、完整顯示
+        background: url('./public/images/merch/cart-card.png') no-repeat center center;
+        background-size: contain; //  原比例縮放、完整顯示
         width: 67%;
-        aspect-ratio: 4 / 3; // ✅ 強制維持寬高比例
+        aspect-ratio: 4 / 3; //  強制維持寬高比例
         padding: 80px;
 
         display: none;
@@ -301,6 +308,7 @@
                 border: none;
                 border-radius: 30px;
                 padding: 10px;
+                cursor: pointer;
 
                 img {
                     width: 48px;
@@ -544,6 +552,7 @@
 
                 // 按鈕區
                 .checkout-btn {
+                    cursor: pointer;
                     width: 100%;
                     padding: 10px;
                     border-radius: 100px;
@@ -605,6 +614,7 @@
             color: $color-charcoal;
 
             button {
+                cursor: pointer;
                 font-family: $font-I;
                 color: $color-charcoal;
                 font-size: $font-size-m;
@@ -641,5 +651,17 @@
     100% {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@keyframes popup-slide-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
     }
 }

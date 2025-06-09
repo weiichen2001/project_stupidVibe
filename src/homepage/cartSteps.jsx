@@ -1,9 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 
 
+export default function CartSteps({onGetReceipt,animateOut}) {
+    const [step, setStep] = useState(1); // 預設從第 1 步開始
+
+//      const handleBackgroundClick = (e) => {
+//     // 如果點擊的目標是背景（不是 cart-step 子元素）
+//     if (e.target.classList.contains("cart-popup")) {
+//       onClose(); // 關閉購物車
+//     }
+//   };
 
 
-export default function CartSteps({onGetReceipt}) {
     useEffect(() => {
         const script = document.createElement("script");
         script.type = "module";
@@ -11,14 +19,26 @@ export default function CartSteps({onGetReceipt}) {
         document.body.appendChild(script);
     }, []);
 
+     //  當切換到 step 4 時，2 秒後自動跳到 step 5
+  useEffect(() => {
+    if (step === 4) {
+      const timer = setTimeout(() => {
+        setStep(5);
+      }, 3500);
+
+      // 清除定時器避免記憶體問題
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
+
     return (
         <>
             {/* 滑出購物車卡片  */}
-            <div className="cart-popup slide-in">
+             <div className={`cart-popup ${animateOut ? "slide-out" : "slide-in"}`}>
                 <div className="hand"></div>
 
                 {/* Step 1: 購物車  */}
-                <div className="cart-step step1 ">
+                <div className={`cart-step step1 ${step === 1 ? "active" : ""}`}>
                     {/* title  */}
                     <div className="title">
                         <h2>Shopping Cart</h2>
@@ -81,7 +101,7 @@ export default function CartSteps({onGetReceipt}) {
                         <p className="total">Total :</p>
                         <p className="currency">USD</p>
                         <p className="price">2,360</p>
-                        <button className="next-btn">
+                        <button className="next-btn" onClick={() => setStep(2)}>
                             <img src="./images/merch/icon/payment-icon.svg" alt="checkout" className="checkout" />
                             <p>Checkout</p>
                         </button>
@@ -90,7 +110,7 @@ export default function CartSteps({onGetReceipt}) {
                 </div>
 
                 {/* Step 2: 地址輸入  */}
-                <div className="cart-step step2 ">
+                 <div className={`cart-step step2 ${step === 2 ? "active" : ""}`}>
                     {/* title  */}
                     <div className="title">
                         <h2>Shipping Address</h2>
@@ -99,14 +119,14 @@ export default function CartSteps({onGetReceipt}) {
                     {/* 按鈕區  */}
                     <div className="btn-all">
                         {/* 上一頁  */}
-                        <button className="page-btn back-btn">
+                        <button className="page-btn back-btn" onClick={() => setStep(1)}>
                             <div className="back-icon">
                                 <img src="./images/merch/icon/back-icon.svg" alt="back-icon" />
                             </div>
                             <p>Back</p>
                         </button>
                         {/* 下一頁  */}
-                        <button className="page-btn next-btn">
+                        <button className="page-btn next-btn" onClick={() => setStep(3)}>
                             <p>Next</p>
                             <div className="next-icon">
                                 <img src="./images/merch/icon/next-icon.svg" alt="next-icon" />
@@ -165,7 +185,7 @@ export default function CartSteps({onGetReceipt}) {
                 </div>
 
                 {/* Step 3: 付款資訊  */}
-                <div className="cart-step step3 ">
+                <div className={`cart-step step3 ${step === 3 ? "active" : ""}`}>
                     {/* title  */}
                     <div className="title">
                         <h2>Payment Methods</h2>
@@ -174,7 +194,7 @@ export default function CartSteps({onGetReceipt}) {
                     {/* 按鈕+右側顯示付款方式  */}
                     <div className="btn-payment">
                         {/* 上一頁  */}
-                        <button className="page-btn back-btn">
+                        <button className="page-btn back-btn" onClick={() => setStep(2)}>
                             <div className="back-icon">
                                 <img src="./images/merch/icon/back-icon.svg" alt="back-icon" />
                             </div>
@@ -264,7 +284,7 @@ export default function CartSteps({onGetReceipt}) {
                             </div>
 
                             {/* 送出按鈕  */}
-                            <button className="checkout-btn">
+                            <button className="checkout-btn" onClick={() => setStep(4)}>
                                 <p>Purchase For $2,360</p>
                             </button>
                         </div>
@@ -273,7 +293,7 @@ export default function CartSteps({onGetReceipt}) {
                 </div>
 
                 {/* Step 4: 處理中  */}
-                <div className="cart-step step4 ">
+               <div className={`cart-step step4 ${step === 4 ? "active" : ""}`}>
                     {/* all content  */}
                     <div className="all-content">
                         <h2>Loading</h2>
@@ -283,7 +303,7 @@ export default function CartSteps({onGetReceipt}) {
                 </div>
 
                 {/* Step 5: 完成畫面  */}
-                <div className="cart-step step5 active ">
+                <div className={`cart-step step5 ${step === 5 ? "active" : ""}`}>
                     {/* title  */}
                     <div className="title">
                         <h2>Purchase Completed</h2>

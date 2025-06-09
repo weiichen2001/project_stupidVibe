@@ -4,15 +4,28 @@ import React, { useState } from "react";
 import CartSteps from "./cartSteps";
 
 
-export default function MerchSection({ onGetReceipt,cartBtnRef }) {
-  const [showCart, setShowCart] = useState(false);
+export default function MerchSection({ onGetReceipt, cartBtnRef }) {
+  const [showCart, setShowCart] = useState(false);  // 控制是否顯示購物車元件
+  const [animateOut, setAnimateOut] = useState(false);  // 控制是否播放滑出動畫
+  const toggleCart = () => {
+    if (showCart) {
+      // 播放滑出動畫
+      setAnimateOut(true);
+      setTimeout(() => {
+        setShowCart(false);    // 真正隱藏
+        setAnimateOut(false);  // 重置動畫狀態
+      }, 600); // 時間要和 slide-out 動畫一致
+    } else {
+      setShowCart(true); // 開啟購物車
+    }
+  };
 
-  
   return (
     <section id="merch">
       {/* 背景模型圖 */}
       <div className="model">
         <img src="./images/merch/model.png" className="bg-model" alt="background model" />
+
 
         {/* 商品圖定位：根據 bg-model 擺放 */}
         <img src="./images/merch/acstand.png" alt="merch-acrylic stand" className="item acstand" />
@@ -28,10 +41,10 @@ export default function MerchSection({ onGetReceipt,cartBtnRef }) {
       </div>
 
       {/* 左側貼紙按鈕圖（Check My Cart） */}
-      <button ref={cartBtnRef} onClick={() => setShowCart(true)} className="cart-sticker-img"><img src="./images/merch/checkMyCart.svg" alt="Check My Cart" /></button>
+      <button ref={cartBtnRef} onClick={toggleCart} className="cart-sticker-img"><img src="./images/merch/checkMyCart.svg" alt="Check My Cart" /></button>
 
       {/* 購物流程區塊（包含手與卡片） */}
-      {showCart && <CartSteps onGetReceipt={onGetReceipt} />}
+      {showCart && <CartSteps onGetReceipt={onGetReceipt} animateOut={animateOut} />}
 
     </section>
   );

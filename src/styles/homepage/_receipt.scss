@@ -4,6 +4,9 @@
 
 // Receipt.scss
 // 收據動畫樣式，對應 Receipt.jsx 的結構
+// #receipt{
+//     z-index: 10;
+// }
 
 #receipt-section {
     width: 100%;
@@ -15,6 +18,7 @@
     position: relative;
     background-image: url("./images/receipt/pink-bg.png");
     background-size: contain;
+    z-index: 10;
 }
 
 .printer {

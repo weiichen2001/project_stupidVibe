@@ -3,12 +3,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
 
+// #manual{
+//     z-index: 10;
+// }
+
 .manual-section {
     background: url('./images/manual/pink-bg.png')no-repeat center top;
     background-size: cover;
     background-attachment: scroll; // 確保背景會隨內容捲動
     padding: 4rem 1rem;
     position: relative;
+    z-index: 10;
 
     /* 裝飾性說明書 */
     .bg-deco-manual {
