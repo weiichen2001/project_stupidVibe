@@ -6,6 +6,7 @@ import MerchSection from '../homepage/merch';
 import CartSteps from '../homepage/cartSteps';
 import Receipt from '../homepage/receipt';
 import Menu from '../homepage/menu';
+import Footer from '../components/footer';
 
 function HomePage({ heroRef, merchRef, cartBtnRef }) {
   const [showReceipt, setShowReceipt] = useState(false);
@@ -38,6 +39,8 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
       <section id="receipt">
         {showReceipt && <Receipt />}
       </section>
+
+      <Footer/>
     </>
   );
 }

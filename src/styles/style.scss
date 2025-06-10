@@ -2,6 +2,8 @@
 @use './function/index' as *;
 @use './reset' as*;
 
+@use './components/footer';
+
 @use './homepage/header';
 @use './homepage/hero';
 @use './homepage/menu';
