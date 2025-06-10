@@ -23,6 +23,9 @@
 
     p {
         font-size: clamp(0.8rem, 1vw + 0.1rem, 1.5rem);
+        // 如果 理想值 < 最小值 → 使用最小值
+        // 如果 理想值 > 最大值 → 使用最大值
+        // 否則 → 使用理想值
         font-family: $font-E;
         color: $color-charcoal;
         position: absolute;
