@@ -1,28 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Menu({ onCartClick, onScrollToHero }) {
-    const location = window.location.pathname;
+    const location = useLocation();
     const [open, setOpen] = useState(false);
+    
+    console.log('當前路徑:', location.pathname);
+    
+    const logoMap = {
+        "/": "./images/hero/stupidVibe-logo-w.svg",           // 首頁
+        "/decorate": "./images/hero/stupidVibe-logo-b.svg", // decorate 頁
+    };
+    const logoSrc = logoMap[location.pathname] || "./images/hero/stupidVibe-logo-w.svg";
+    
+    console.log('選擇的 logo:', logoSrc);
+    
     const handleHomeClick = (e) => {
         e.preventDefault();
-        if (location === "/project_stupidVibe/") {
-            // 已經在首頁，滑到最上面
+        if (location.pathname === "/") {  // 也要改成 "/"
             onScrollToHero?.();
         } else {
-            // 導回首頁
             window.location.href = "/project_stupidVibe/";
         }
     };
 
     return (
         <header id="nav">
-            {/* logo */}
             <a href="/" className="logo" onClick={handleHomeClick}>
-                <img src="./images/hero/stupidVibe-logo-w.svg" alt="logo" />
+                <img src={logoSrc} alt="logo" />
             </a>
 
-            {/* 浮動選單區 */}
             <div id="menu" className={open ? "open" : ""}>
                 <div className="menu-toggle" onClick={() => setOpen(!open)}>
                     <img className="test-img" src="./images/menu/btn-menu.png" alt="menu-toggle" />
@@ -44,13 +51,12 @@ export default function Menu({ onCartClick, onScrollToHero }) {
                         <span>CART</span>
                     </Link>
 
-
                     <a href="#" className="menu-item about">
                         <img src="./images/menu/icon-about.svg" alt="icon-about" />
                         <span>ABOUT</span>
                     </a>
                 </div>
             </div>
-        </header >
+        </header>
     );
 }

@@ -3,6 +3,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Emblema+One&family=Indie+Flower&display=swap');
 
+#nav {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    padding: 30px;
+}
+
+.logo {
+    width: 190px;
+
+    a {
+        display: block;
+    }
+}
+
 // 將整個menu固定在畫面的右上
 #menu {
     width: 222px;
