@@ -87,7 +87,7 @@ export default function MerchSection({ onGetReceipt, cartBtnRef }) {
                         </button>
                         <button className="checkOut">
                           <span>Checkout</span>
-                          <img src="./images/merch/icon/payment-icon.svg" alt="" className="cart" />
+                          <img src="./images/merch/icon/payment-icon-24.svg" alt="" className="cart" />
                         </button>
                       </div>
                     </div>

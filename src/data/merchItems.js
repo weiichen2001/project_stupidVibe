@@ -64,7 +64,7 @@ const merchItems = [
     cardFloat: "bottom",
     card: {
       name: "2025 HOSHI Birthday Hand Fan",
-      size: "W 20.0 cm × H 28.5 cm (including handle)",
+      size: "W 20.0 × H 28.5 cm (including handle)",
       material: "PVC fan sheet with plastic handle",
       desc: "Need a breeze? Or just want to make sure HOSHI sees your claw pose from Row 98?This fan’s got you covered—literally and emotionally.",
       price: "$5.50",
