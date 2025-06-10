@@ -122,7 +122,7 @@
 
         // 上方浮出
         &.float-top .item-card-wrapper {
-            bottom: 200%;
+            top: -130%;
             left: 50%;
             transform: translate(-50%, -20px);
         }

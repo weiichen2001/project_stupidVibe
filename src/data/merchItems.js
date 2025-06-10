@@ -23,7 +23,7 @@ const merchItems = [
     id: "photocard",
     img: "./images/merch/photocard.png",
     alt: "Photocard Set",
-        cardFloat: "bottom",
+    cardFloat: "bottom",
     card: {
       name: "Photocard Set",
       size: "5 pcs · 9x6 cm each",
@@ -42,7 +42,7 @@ const merchItems = [
     id: "postcard",
     img: "./images/merch/postcard.png",
     alt: "postcard",
-     cardFloat: "bottom",
+    cardFloat: "bottom",
     card: {
       name: "2025 HOSHI Birthday Postcard - dumb ver.",
       size: "10 × 14.8 cm (standard A6 size)",
@@ -61,7 +61,7 @@ const merchItems = [
     id: "handfan",
     img: "./images/merch/handfan.png",
     alt: "handfan",
-     cardFloat: "bottom",
+    cardFloat: "bottom",
     card: {
       name: "2025 HOSHI Birthday Hand Fan",
       size: "W 20.0 cm × H 28.5 cm (including handle)",
@@ -100,16 +100,13 @@ const merchItems = [
     id: "badge1",
     img: "./images/merch/badge1.png",
     alt: "badge1",
+    cardFloat: "bottom",
     card: {
       name: "2025 HOSHI Birthday Badge – punch ver.",
       size: "Diameter: 5.8 cm",
       material: "Tinplate",
       desc: "You’ve seen “Tiger Punch HOSHI” on stage—now he fits in your palm (and on your bag). Strong pose, serious face, zero actual threat.",
       price: "$2.50",
-      cardPosition: {
-        top: "61%",
-        left: "-87%"
-      }
     },
     style: {
       top: "45%",
@@ -122,16 +119,13 @@ const merchItems = [
     id: "badge2",
     img: "./images/merch/badge2.png",
     alt: "badge2",
+    cardFloat: "bottom",
     card: {
       name: "2025 HOSHI Birthday Badge – birthday ver.",
       size: "Diameter: 5.8 cm",
       material: "Tinplate",
       desc: "Celebrate HOSHI’s birthday all year long—or at least every time you look at your bag. He's got the hat, the claws, and that look that says “it’s MY day.”",
       price: "$2.50",
-      cardPosition: {
-        top: "61%",
-        left: "-80%"
-      }
     },
     style: {
       top: "45%",
@@ -144,16 +138,13 @@ const merchItems = [
     id: "sticker-pack1",
     img: "./images/merch/sticker-pack1.png",
     alt: "sticker-pack1",
+    cardFloat: "top",
     card: {
       name: "2025 HOSHI Sticker Pack - Weekend With Hoshi ver.",
       size: "Each sticker approx. 4–6 cm wide",
       material: "Water-resistant vinyl",
       desc: "No schedule, just snacks, sunshine, and a suspiciously stylish dog. This sticker pack includes Just the basics: flowers, lunch, and one overdressed tiger.",
       price: "$2.50",
-      cardPosition: {
-        top: "-197%",
-        left: "-93%"
-      }
     },
     style: {
       top: "75%",
