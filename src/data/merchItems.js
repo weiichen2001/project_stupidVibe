@@ -25,7 +25,7 @@ const merchItems = [
     alt: "Photocard Set",
     cardFloat: "bottom",
     card: {
-      name: "Photocard Set",
+      name: "2025 HOSHI Random Photocard Pack",
       size: "5 pcs · 9x6 cm each",
       material: "Coated Card",
       desc: "A collection of iconic HOSHI moods to carry in your wallet.",
