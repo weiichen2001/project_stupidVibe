@@ -152,6 +152,44 @@ const merchItems = [
       width: "10%",
     }
   },
+  //   sticker-pack2
+  {
+    id: "sticker-pack2",
+    img: "./images/merch/sticker-pack1.png",
+    alt: "sticker-pack2",
+    cardFloat: "top",
+    card: {
+      name: "2025 HOSHI Sticker Pack - Weekend With Hoshi ver.",
+      size: "Each sticker approx. 4–6 cm wide",
+      material: "Water-resistant vinyl",
+      desc: "No schedule, just snacks, sunshine, and a suspiciously stylish dog. This sticker pack includes Just the basics: flowers, lunch, and one overdressed tiger.",
+      price: "$2.50",
+    },
+    style: {
+      top: "75%",
+      left: "52%",
+      width: "10%",
+    }
+  },
+  //  bag
+  {
+    id: "bag",
+    img: "./images/merch/bag.png",
+    alt: "bag",
+    cardFloat: "left",
+    card: {
+      name: "2025 HOSHI Drawstring Mini Bag",
+      size: "Approx. 15 × 30 cm",
+      material: "Cotton blend",
+      desc: "A pink bag packed with party vibes and HOSHI’s signature charm. Cute, fun, and ready to tag along on all your adventures!",
+      price: "$5.50",
+    },
+    style: {
+      top: "66%",
+      left: "71%",
+      width: "10%",
+    }
+  },
 
 ];
 
