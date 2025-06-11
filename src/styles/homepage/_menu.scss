@@ -9,10 +9,26 @@
     z-index: 999;
     display: flex;
     padding: 30px;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+
+    // 導航隱藏/顯示狀態
+    &.nav-hidden {
+        opacity: 0;
+        visibility: hidden; // 完全隱藏，不佔用空間
+        pointer-events: none;
+    }
+
+    &.nav-visible {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
 }
+
 
 .logo {
     width: 190px;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
 
     a {
         display: block;

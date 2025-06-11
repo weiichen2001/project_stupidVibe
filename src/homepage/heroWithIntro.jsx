@@ -1,22 +1,20 @@
+// heroWithIntro.jsx (確保有正確實作)
 import React, { useState, useRef, useEffect } from "react";
 
-export default function HeroWithIntro() {
+export default function HeroWithIntro({ onAnimationComplete }) {
   const [showIntro, setShowIntro] = useState(true);
   const videoRef = useRef(null);
 
   // 控制頁面滾動
   useEffect(() => {
     if (showIntro) {
-      // 播放影片時禁用滾動
       document.body.style.overflow = 'hidden';
       document.body.style.height = '100vh';
     } else {
-      // 影片結束後恢復滾動
       document.body.style.overflow = 'auto';
       document.body.style.height = 'auto';
     }
-
-    // 清理函數：組件卸載時恢復滾動
+    
     return () => {
       document.body.style.overflow = 'auto';
       document.body.style.height = 'auto';
@@ -24,20 +22,27 @@ export default function HeroWithIntro() {
   }, [showIntro]);
 
   const handleVideoEnd = () => {
-    // 影片結束後開始淡出
+    console.log('Video ended - calling onAnimationComplete'); // 除錯用
     setShowIntro(false);
+    // 重要：呼叫父元件的回調函數
+    if (onAnimationComplete) {
+      onAnimationComplete();
+    }
   };
 
   const handleSkip = () => {
+    console.log('Skip clicked - calling onAnimationComplete'); // 除錯用
     setShowIntro(false);
+    // 重要：呼叫父元件的回調函數
+    if (onAnimationComplete) {
+      onAnimationComplete();
+    }
   };
 
   return (
     <section id="hero" className={!showIntro ? 'video-ended' : ''}>
       {/* 開場動畫層 */}
-      <div 
-        className={`intro-overlay ${showIntro ? 'show' : 'hide'}`}
-      >
+      <div className={`intro-overlay ${showIntro ? 'show' : 'hide'}`}>
         <video
           ref={videoRef}
           className="intro-video"
@@ -50,21 +55,17 @@ export default function HeroWithIntro() {
         </video>
       </div>
 
-      {/* 隱藏的主標題（輔助 SEO / 無障礙） */}
       <h1>HAPPY HOSHI DAY</h1>
-      
+
       {/* CTA 按鈕區塊 */}
       <div className={`cta ${showIntro ? 'cta-hidden' : 'cta-visible'}`}>
         <a href="#" className="merch">VIEW MERCHANDISE</a>
         <a href="#" className="decorate">DECORATE MY ROOM</a>
       </div>
 
-      {/* 可選：跳過按鈕 */}
+      {/* 跳過按鈕 */}
       {showIntro && (
-        <button
-          onClick={handleSkip}
-          className="skip-button"
-        >
+        <button onClick={handleSkip} className="skip-button">
           SKIP
         </button>
       )}
