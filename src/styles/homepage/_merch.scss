@@ -41,20 +41,20 @@
 
             // 預設 float-right
             top: 0;
-            left:80%;
+            left: 80%;
         }
 
         // 左側浮出
         &.float-left .item-card-wrapper {
-            top: 0;
-            right: 100%;
+            top: -30%;
+            right: 140%;
             left: auto;
             transform: translateX(-20px);
         }
 
         // 上方浮出
         &.float-top .item-card-wrapper {
-            top: -130%;
+            top: -150%;
             left: 50%;
             transform: translate(-50%, -20px);
         }
@@ -62,14 +62,14 @@
         // 下方浮出
         &.float-bottom .item-card-wrapper {
             top: 80%;
-            left: 50%;
+            left: 10%;
             transform: translate(-50%, 0);
         }
     }
 
     .item-card {
         .card-bg {
-            width: 100%;
+            width: 120%;
             height: auto;
             display: block;
         }
@@ -78,7 +78,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 120%;
             height: 100%;
             padding: 7% 7%;
             box-sizing: border-box;
@@ -89,19 +89,19 @@
 
 
             h3 {
-                font-size: $font-size-m;
+                font-size: $font-size-l;
                 font-family: $font-I;
                 padding-bottom: 5%;
                 white-space: nowrap;
             }
 
             p {
-                font-size: $font-size-s;
+                font-size: $font-size-m;
                 font-family: $font-I;
             }
 
             .desc {
-                padding: 5% 0;
+                padding: 5% auto;
             }
 
             .bottom-row {
@@ -110,7 +110,7 @@
                 justify-content: space-between;
 
                 .price {
-                    font-size: $font-size-xxl;
+                    font-size: $font-size-h2;
                 }
 
                 .numCount {
@@ -129,6 +129,11 @@
                         background-color: $color-pink-light;
                         border-radius: 5px;
                         font-family: $font-I;
+                        font-size: $font-size-l ;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
                     }
                 }
 
@@ -140,11 +145,22 @@
                         all: unset;
                         display: flex;
                         justify-content: flex-end;
-                        gap:10%;
+                        gap: 10%;
+                        cursor: pointer;
+                        transition: all 0.2s ease-in-out;
+
+                        &:hover {
+                            animation: pulse 1s infinite;
+                        img{
+                            transform: rotate(8deg);
+                        }
+                        
+                        }
                     }
 
+
                     span {
-                        font-size: $font-size-xs;
+                        font-size: $font-size-s;
                         font-family: $font-I;
                         white-space: nowrap;
                     }

@@ -26,7 +26,7 @@ export default function ManualSection({ onOpenBoxClick }) {
             <img src="./images/manual/stupidVibe-logo-b.svg" alt="Stupid Vibe logo" className="logo" />
             <div className="userManual">USER <br />MANUAL</div>
           </div>
-          <p className="subtitle">Come here and prepare for my birthday party!</p>
+          <p className="subtitle">Come here and prepare for my birthday party !</p>
         </div>
         
         {/* 卡片內框：步驟區域 */}
@@ -36,17 +36,17 @@ export default function ManualSection({ onOpenBoxClick }) {
               {/* STEP 1 */}
               <div className="step1 block">
                 <h3>STEP 1</h3>
-                <p>Grab your favorite birthday merch now!</p>
+                <p>Grab your favorite birthday merch now !</p>
                 <img className="step1" src="./images/manual/step1-merch.png" alt="Merch items" />
-                <p>Pick a heartfelt gift and <br />surprise today's star!</p>
+                <p>Pick a heartfelt gift and <br />surprise today's star !</p>
               </div>
               
               {/* STEP 2 */}
               <div className="step2 block">
                 <h3>STEP 2</h3>
-                <p>Build your birthday scene now!</p>
+                <p>Build your birthday scene now !</p>
                 <img className="step2" src="./images/manual/step2-room.png" alt="Decorate scene" />
-                <p>All set and ready—get creative! <br />Decorate your cutest corner!</p>
+                <p>All set and ready—get creative! <br />Decorate your cutest corner !</p>
               </div>
             </div>
             
@@ -60,15 +60,15 @@ export default function ManualSection({ onOpenBoxClick }) {
               <div className="step3 block">
                 <h3>STEP 3</h3>
                 <img className="step3" src="./images/manual/step3-box.jpg" alt="Unboxing box" />
-                <p>Unboxing the surprise!</p>
+                <p>Unboxing the surprise !</p>
               </div>
             </div>
           </div>
-          <p className="phrase">Distribution of Good Vibes is Highly Encouraged.</p>
         </div>
         
         <div className="footer">
           <p className="footer-text">&copy; Stupid Vibe Birthday Edition. All Party Rights Reserved.</p>
+          <p className="phrase">Distribution of Good Vibes is Highly Encouraged.</p>
         </div>
       </div>
       
