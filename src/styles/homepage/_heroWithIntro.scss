@@ -38,15 +38,18 @@
 // 修改你現有的 #hero
 #hero {
   width: 100%;
-  height: 100vh;
-  height: calc(100vh + 90px);
-  /* 扣除大約書籤列高度 */
+  height: calc(100vh + 90px); // 播放影片時只佔滿視窗高度
   background-image: url('/project_stupidVibe/images/hero/hero-bg.jpg');
   background-size: 101% 101%; // 和影片保持一樣的放大比例
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
   overflow: hidden; // 新增：避免內容溢出
+  
+  // 影片結束後再調整高度
+  &.video-ended {
+    height: calc(100vh + 90px); // 扣除大約書籤列高度
+  }
   
   h1 {
     display: none;

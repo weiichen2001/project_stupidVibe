@@ -1,16 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function HeroWithIntro() {
   const [showIntro, setShowIntro] = useState(true);
   const videoRef = useRef(null);
+
+  // 控制頁面滾動
+  useEffect(() => {
+    if (showIntro) {
+      // 播放影片時禁用滾動
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
+    } else {
+      // 影片結束後恢復滾動
+      document.body.style.overflow = 'auto';
+      document.body.style.height = 'auto';
+    }
+
+    // 清理函數：組件卸載時恢復滾動
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.body.style.height = 'auto';
+    };
+  }, [showIntro]);
 
   const handleVideoEnd = () => {
     // 影片結束後開始淡出
     setShowIntro(false);
   };
 
+  const handleSkip = () => {
+    setShowIntro(false);
+  };
+
   return (
-    <section id="hero">
+    <section id="hero" className={!showIntro ? 'video-ended' : ''}>
       {/* 開場動畫層 */}
       <div 
         className={`intro-overlay ${showIntro ? 'show' : 'hide'}`}
@@ -39,7 +62,7 @@ export default function HeroWithIntro() {
       {/* 可選：跳過按鈕 */}
       {showIntro && (
         <button
-          onClick={() => setShowIntro(false)}
+          onClick={handleSkip}
           className="skip-button"
         >
           SKIP
