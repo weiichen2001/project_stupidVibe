@@ -25,6 +25,15 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
     cartBtnRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // 新增：滑動到 merch 區塊中間的函數
+  const handleScrollToMerch = () => {
+    merchRef?.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center'
+    });
+  };
+
   const scrollToReceipt = () => {
     requestAnimationFrame(() => {
       if (receiptRef.current) {
@@ -43,7 +52,7 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
     if (hideCartCallback) {
       hideCartCallback();
     }
-    
+
     // 延遲顯示收據和滑動，等購物車收回完成
     setTimeout(() => {
       setShowReceipt(true);
@@ -68,29 +77,30 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
         onCartClick={handleCartClick}
         onScrollToHero={handleScrollToHero}
       />
-      
+
       <div ref={heroRef}>
         <HeroWithIntro
           onAnimationComplete={handleAnimationComplete}
           triggerKey={triggerAnimation}
+          onMerchClick={handleScrollToMerch}
         />
       </div>
-      
+
       <section id='manual'>
         <ManualSection onOpenBoxClick={handleOpenBoxClick} />
       </section>
-      
+
       <div ref={merchRef} id='merch'>
         <MerchSection
           onGetReceipt={handleGetReceipt}
           cartBtnRef={cartBtnRef}
         />
       </div>
-      
+
       <section id="receipt" ref={receiptRef}>
         {showReceipt && <Receipt />}
       </section>
-      
+
       <Footer/>
     </>
   );

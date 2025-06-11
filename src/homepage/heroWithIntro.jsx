@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-export default function HeroWithIntro({ onAnimationComplete, triggerKey = 0 }) {
+export default function HeroWithIntro({ onAnimationComplete, triggerKey = 0, onMerchClick }) {
   const [showIntro, setShowIntro] = useState(true);
   const videoRef = useRef(null);
 
@@ -48,6 +49,13 @@ export default function HeroWithIntro({ onAnimationComplete, triggerKey = 0 }) {
     }
   };
 
+  const handleMerchClick = (e) => {
+    e.preventDefault();
+    if (onMerchClick) {
+      onMerchClick();
+    }
+  };
+
   return (
     <section id="hero" className={!showIntro ? 'video-ended' : ''}>
       {/* 開場動畫層 */}
@@ -68,8 +76,8 @@ export default function HeroWithIntro({ onAnimationComplete, triggerKey = 0 }) {
 
       {/* CTA 按鈕區塊 */}
       <div className={`cta ${showIntro ? 'cta-hidden' : 'cta-visible'}`}>
-        <a href="#" className="merch">VIEW MERCHANDISE</a>
-        <a href="#" className="decorate">DECORATE MY ROOM</a>
+        <a href="#" className="merch cta-btn" onClick={handleMerchClick}>VIEW MERCHANDISE</a>
+        <Link to="/decorate" className="decorate cta-btn">DECORATE MY ROOM</Link>
       </div>
 
       {/* 跳過按鈕 */}
