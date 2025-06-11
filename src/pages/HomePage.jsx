@@ -11,7 +11,7 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
   const [showReceipt, setShowReceipt] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const [triggerAnimation, setTriggerAnimation] = useState(0);
-  const receiptRef = useRef(null); // 新增 receipt 的 ref
+  const receiptRef = useRef(null);
 
   const handleAnimationComplete = () => {
     setIsAnimationComplete(true);
@@ -25,30 +25,34 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
     cartBtnRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // 改善的滑動到收據函數
   const scrollToReceipt = () => {
-    // 使用 requestAnimationFrame 確保 DOM 更新完成
     requestAnimationFrame(() => {
       if (receiptRef.current) {
-        receiptRef.current.scrollIntoView({ 
+        receiptRef.current.scrollIntoView({
           behavior: "smooth",
-          block: "center", // 滑到螢幕正中間
+          block: "center",
           inline: "center"
         });
       }
     });
   };
 
-  // 處理收據顯示的函數
-  const handleGetReceipt = () => {
-    setShowReceipt(true);
-    // 使用 setTimeout 確保 Receipt 組件完全渲染後再滑動
+  // 修改處理收據顯示的函數，加入購物車收回功能
+  const handleGetReceipt = (hideCartCallback) => {
+    // 先觸發購物車收回動畫
+    if (hideCartCallback) {
+      hideCartCallback();
+    }
+    
+    // 延遲顯示收據和滑動，等購物車收回完成
     setTimeout(() => {
-      scrollToReceipt();
-    }, 100); // 給一點時間讓組件渲染
+      setShowReceipt(true);
+      setTimeout(() => {
+        scrollToReceipt();
+      }, 100);
+    }, 600); // 等待購物車收回動畫完成（與 slide-out 動畫時間一致）
   };
 
-  // 處理 openbox 貼紙點擊
   const handleOpenBoxClick = () => {
     handleScrollToHero();
     setTimeout(() => {
@@ -78,12 +82,12 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
       
       <div ref={merchRef} id='merch'>
         <MerchSection
-          onGetReceipt={handleGetReceipt} // 使用新的處理函數
+          onGetReceipt={handleGetReceipt}
           cartBtnRef={cartBtnRef}
         />
       </div>
       
-      <section id="receipt" ref={receiptRef}> {/* 添加 ref */}
+      <section id="receipt" ref={receiptRef}>
         {showReceipt && <Receipt />}
       </section>
       
