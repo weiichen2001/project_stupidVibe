@@ -1,4 +1,3 @@
-// HomePage.jsx (加入除錯)
 import { useState } from 'react';
 import ManualSection from '../homepage/manual';
 import MerchSection from '../homepage/merch';
@@ -11,9 +10,9 @@ import HeroWithIntro from '../homepage/heroWithIntro';
 function HomePage({ heroRef, merchRef, cartBtnRef }) {
   const [showReceipt, setShowReceipt] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
+  const [triggerAnimation, setTriggerAnimation] = useState(0); // 用來觸發重新播放
 
   const handleAnimationComplete = () => {
-    console.log('Animation completed in HomePage'); // 除錯用
     setIsAnimationComplete(true);
   };
 
@@ -30,11 +29,22 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
     section?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // 除錯用 - 檢查狀態
-  console.log('isAnimationComplete:', isAnimationComplete);
+  // 處理 openbox 貼紙點擊
+  const handleOpenBoxClick = () => {
+    
+    // 1. 先滑到 hero 區域
+    handleScrollToHero();
+    
+    // 2. 等滑動完成後重新觸發動畫
+    setTimeout(() => {
+      setIsAnimationComplete(false); // 重置動畫狀態
+      setTriggerAnimation(prev => prev + 1); // 觸發重新播放
+    }, 800); // 等待滑動動畫完成
+  };
 
   return (
     <>
+      {/* Menu 傳入 isVisible prop 來控制顯示/隱藏 */}
       <Menu
         isVisible={isAnimationComplete}
         onCartClick={handleCartClick}
@@ -42,11 +52,14 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
       />
       
       <div ref={heroRef}>
-        <HeroWithIntro onAnimationComplete={handleAnimationComplete} />
+        <HeroWithIntro 
+          onAnimationComplete={handleAnimationComplete}
+          triggerKey={triggerAnimation} // 傳遞觸發鍵
+        />
       </div>
       
       <section id='manual'>
-        <ManualSection />
+        <ManualSection onOpenBoxClick={handleOpenBoxClick} />
       </section>
       
       <div ref={merchRef} id='merch'>

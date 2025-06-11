@@ -1,9 +1,20 @@
-// heroWithIntro.jsx (確保有正確實作)
 import React, { useState, useRef, useEffect } from "react";
 
-export default function HeroWithIntro({ onAnimationComplete }) {
+export default function HeroWithIntro({ onAnimationComplete, triggerKey = 0 }) {
   const [showIntro, setShowIntro] = useState(true);
   const videoRef = useRef(null);
+
+  // 當 triggerKey 改變時，重新開始動畫
+  useEffect(() => {
+    if (triggerKey > 0) {
+      setShowIntro(true);
+      // 重新播放影片
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(console.error);
+      }
+    }
+  }, [triggerKey]);
 
   // 控制頁面滾動
   useEffect(() => {
@@ -14,7 +25,7 @@ export default function HeroWithIntro({ onAnimationComplete }) {
       document.body.style.overflow = 'auto';
       document.body.style.height = 'auto';
     }
-    
+
     return () => {
       document.body.style.overflow = 'auto';
       document.body.style.height = 'auto';
@@ -22,7 +33,6 @@ export default function HeroWithIntro({ onAnimationComplete }) {
   }, [showIntro]);
 
   const handleVideoEnd = () => {
-    console.log('Video ended - calling onAnimationComplete'); // 除錯用
     setShowIntro(false);
     // 重要：呼叫父元件的回調函數
     if (onAnimationComplete) {
@@ -31,7 +41,6 @@ export default function HeroWithIntro({ onAnimationComplete }) {
   };
 
   const handleSkip = () => {
-    console.log('Skip clicked - calling onAnimationComplete'); // 除錯用
     setShowIntro(false);
     // 重要：呼叫父元件的回調函數
     if (onAnimationComplete) {

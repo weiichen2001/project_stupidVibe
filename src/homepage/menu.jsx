@@ -1,4 +1,3 @@
-// Menu.jsx (修改版)
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -6,15 +5,12 @@ export default function Menu({ onCartClick, onScrollToHero, isVisible }) {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   
-  console.log('當前路徑:', location.pathname);
-  
   const logoMap = {
     "/": "./images/hero/stupidVibe-logo-w.svg", // 首頁
     "/decorate": "./images/hero/stupidVibe-logo-b.svg", // decorate 頁
   };
   
   const logoSrc = logoMap[location.pathname] || "./images/hero/stupidVibe-logo-w.svg";
-  console.log('選擇的 logo:', logoSrc);
 
   const handleHomeClick = (e) => {
     e.preventDefault();
