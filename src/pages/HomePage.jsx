@@ -1,12 +1,12 @@
 // HomePage.jsx
 import { useState } from 'react';
-import HeroSection from '../homepage/hero';
 import ManualSection from '../homepage/manual';
 import MerchSection from '../homepage/merch';
 import CartSteps from '../homepage/cartSteps';
 import Receipt from '../homepage/receipt';
 import Menu from '../homepage/menu';
 import Footer from '../components/footer';
+import HeroWithIntro from '../homepage/heroWithIntro';
 
 function HomePage({ heroRef, merchRef, cartBtnRef }) {
   const [showReceipt, setShowReceipt] = useState(false);
@@ -19,7 +19,7 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
   return (
     <>
       <div ref={heroRef}>
-        <HeroSection />
+        <HeroWithIntro/>
       </div>
 
       <section id='manual'>
