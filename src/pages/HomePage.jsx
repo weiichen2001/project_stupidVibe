@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ManualSection from '../homepage/manual';
 import MerchSection from '../homepage/merch';
 import CartSteps from '../homepage/cartSteps';
@@ -10,7 +10,8 @@ import HeroWithIntro from '../homepage/heroWithIntro';
 function HomePage({ heroRef, merchRef, cartBtnRef }) {
   const [showReceipt, setShowReceipt] = useState(false);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
-  const [triggerAnimation, setTriggerAnimation] = useState(0); // 用來觸發重新播放
+  const [triggerAnimation, setTriggerAnimation] = useState(0);
+  const receiptRef = useRef(null); // 新增 receipt 的 ref
 
   const handleAnimationComplete = () => {
     setIsAnimationComplete(true);
@@ -24,27 +25,40 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
     cartBtnRef?.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // 改善的滑動到收據函數
   const scrollToReceipt = () => {
-    const section = document.getElementById("receipt");
-    section?.scrollIntoView({ behavior: "smooth" });
+    // 使用 requestAnimationFrame 確保 DOM 更新完成
+    requestAnimationFrame(() => {
+      if (receiptRef.current) {
+        receiptRef.current.scrollIntoView({ 
+          behavior: "smooth",
+          block: "center", // 滑到螢幕正中間
+          inline: "center"
+        });
+      }
+    });
+  };
+
+  // 處理收據顯示的函數
+  const handleGetReceipt = () => {
+    setShowReceipt(true);
+    // 使用 setTimeout 確保 Receipt 組件完全渲染後再滑動
+    setTimeout(() => {
+      scrollToReceipt();
+    }, 100); // 給一點時間讓組件渲染
   };
 
   // 處理 openbox 貼紙點擊
   const handleOpenBoxClick = () => {
-    
-    // 1. 先滑到 hero 區域
     handleScrollToHero();
-    
-    // 2. 等滑動完成後重新觸發動畫
     setTimeout(() => {
-      setIsAnimationComplete(false); // 重置動畫狀態
-      setTriggerAnimation(prev => prev + 1); // 觸發重新播放
-    }, 800); // 等待滑動動畫完成
+      setIsAnimationComplete(false);
+      setTriggerAnimation(prev => prev + 1);
+    }, 800);
   };
 
   return (
     <>
-      {/* Menu 傳入 isVisible prop 來控制顯示/隱藏 */}
       <Menu
         isVisible={isAnimationComplete}
         onCartClick={handleCartClick}
@@ -52,9 +66,9 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
       />
       
       <div ref={heroRef}>
-        <HeroWithIntro 
+        <HeroWithIntro
           onAnimationComplete={handleAnimationComplete}
-          triggerKey={triggerAnimation} // 傳遞觸發鍵
+          triggerKey={triggerAnimation}
         />
       </div>
       
@@ -64,15 +78,12 @@ function HomePage({ heroRef, merchRef, cartBtnRef }) {
       
       <div ref={merchRef} id='merch'>
         <MerchSection
-          onGetReceipt={() => {
-            setShowReceipt(true);
-            scrollToReceipt();
-          }}
+          onGetReceipt={handleGetReceipt} // 使用新的處理函數
           cartBtnRef={cartBtnRef}
         />
       </div>
       
-      <section id="receipt">
+      <section id="receipt" ref={receiptRef}> {/* 添加 ref */}
         {showReceipt && <Receipt />}
       </section>
       

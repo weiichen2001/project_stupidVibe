@@ -65,10 +65,7 @@
   transform: translateX(-50%) translateY(-100%); // 初始完全隱藏
   opacity: 0;
   font-family: $font-I;
-  z-index: 5; // 確保收據在洞口上方但不會被完全遮住
-  
-//   // 修改陰影：移除方形陰影，改用更自然的陰影或移除
-//   filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.15));
+  z-index: 5; // 確保收據在洞口上方但不會被完全遮住   
 
   // 在收據頂部添加鋸齒邊緣
   &::before {
