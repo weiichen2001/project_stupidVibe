@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  background-image: url("./images/receipt/pink-bg.png");
+  background-image: url("/project_stupidVibe/images/receipt/pink-bg.png");
   background-size: cover;
   background-color: $color-charcoal;
   z-index: 10;
@@ -56,7 +56,7 @@
   width: 581px;
   height: 773px;
   padding: 7%;
-  background-image: url("./images/receipt/paper-texture.png");
+  background-image: url("/project_stupidVibe/images/receipt/paper-texture.png");
   background-size: cover;
   position: absolute;
   // 讓收據從洞口內開始，但可以向下延伸
