@@ -221,7 +221,7 @@
 
     /* 手 */
     .hand {
-        background: url('./public/images/merch/hand.png') no-repeat;
+        background: url('/project_stupidVibe/images/merch/hand.png') no-repeat;
         background-size: contain;
         width: 75%;
         height: 34%;
@@ -240,7 +240,7 @@
         position: absolute;
         top: 21%;
         left: 18%;
-        background: url('./public/images/merch/cart-card.png') no-repeat center center;
+        background: url('/project_stupidVibe/images/merch/cart-card.png') no-repeat center center;
         background-size: contain; //  原比例縮放、完整顯示
         width: 67%;
         aspect-ratio: 4 / 3; //  強制維持寬高比例
@@ -476,7 +476,7 @@
                 appearance: none; // 去除預設箭頭（部分瀏覽器）
                 -webkit-appearance: none;
                 -moz-appearance: none;
-                background-image: url('./images/merch/icon/arrow-down-icon.svg'); // 可放右側箭頭
+                background-image: url('/project_stupidVibe/merch/icon/arrow-down-icon.svg'); // 可放右側箭頭
                 background-repeat: no-repeat;
                 background-position: right 1rem center;
             }
