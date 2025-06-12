@@ -1,0 +1,653 @@
+@use '../variable/index' as *;
+@use '../function/index' as *;
+
+/* 滑出購物車卡片 */
+.cart-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 900;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: none;
+
+    &.slide-in {
+        animation: popup-slide-in 0.8s ease-out forwards;
+    }
+
+    &.slide-out {
+        animation: popup-slide-out 0.8s ease-out forwards;
+    }
+
+    /* 手 */
+    .hand {
+        background: url('/project_stupidVibe/images/merch/hand.png') no-repeat;
+        background-size: contain;
+        width: 75%;
+        height: 34%;
+        position: absolute;
+        top: 36%;
+        left: -36%;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    /* 1200px - 1599px */
+    @media (max-width: 1599px) and (min-width: 1200px) {
+        .hand {
+            top: 42%;
+            left: -34.8%;
+            width: 73%;
+            height: 32%;
+        }
+    }
+
+    /* 1024px - 1199px */
+    @media (max-width: 1199px) and (min-width: 1024px) {
+        .hand {
+            top: 36%;
+            left: -31.4%;
+            width: 70%;
+            height: 30%;
+        }
+    }
+
+    /* 步驟卡片 */
+    .cart-step {
+        position: absolute;
+        background: url('/project_stupidVibe/images/merch/cart-card.png') no-repeat center center;
+        background-size: contain;
+
+        /* 優化響應式位置與尺寸 */
+        top: clamp(16%, 20%, 24%);
+        left: clamp(12%, 16%, 20%);
+        width: clamp(70%, 70%, 72%);
+        aspect-ratio: 4 / 3;
+
+        /* 優化響應式內距 */
+        padding: clamp(35px, 3.5vw + 10px, 80px);
+
+        display: none;
+        text-align: center;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            display: flex;
+            margin-bottom: clamp(1rem, 1.2vw + 0.5rem, 2rem);
+            gap: clamp(0.5rem, 0.8vw, 1rem);
+
+            h2 {
+                font-size: $font-size-h2;
+            }
+
+            img {
+                width: clamp(18px, 1.5vw, 26px);
+                height: auto;
+            }
+        }
+
+        // 按鈕共同設定
+        .page-btn {
+            all: unset;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            gap: clamp(6px, 0.6vw, 12px);
+            padding: clamp(6px, 0.5vw, 10px) clamp(8px, 0.8vw, 14px);
+            background-color: $color-primary;
+            border-radius: clamp(8px, 0.8vw, 12px);
+
+            p {
+                font-family: $font-I;
+                font-size: $font-size-l;
+            }
+
+            div {
+                width: clamp(18px, 1.5vw, 26px);
+                height: auto;
+            }
+        }
+
+        // 表單focus樣式
+        input:focus,
+        select:focus {
+            border: 2px solid $color-primary;
+            outline: none;
+            box-shadow: 0 0 8px rgba($color-primary, 0.3);
+        }
+    }
+
+    /* Step 1: 購物車 */
+    .step1 {
+
+        /* 購物車清單 */
+        .item-list {
+            font-family: $font-I;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1rem, 1.5vw, 2.5rem);
+            width: 100%;
+
+            .item {
+                display: flex;
+                align-items: center;
+                gap: clamp(0.8rem, 1vw, 1.2rem);
+
+                .delete {
+                    width: clamp(20px, 1.8vw, 28px);
+                    height: auto;
+                    flex-shrink: 0;
+                }
+
+                .photo {
+                    width: clamp(60px, 6vw, 90px);
+                    height: clamp(60px, 6vw, 90px);
+                    background-color: $color-pink-light;
+                    border-radius: $radius-s;
+                    @extend %flex-center;
+                    flex-shrink: 0;
+
+                    img {
+                        width: 80%;
+                        height: auto;
+                    }
+                }
+
+                .item-name {
+                    font-size: $font-size-m;
+                    text-align: left;
+                    flex-grow: 1;
+                    line-height: 1.3;
+                    min-width: 0; // 防止文字溢出
+                }
+
+                .priceNum {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: clamp(0.5rem, 0.8vw, 1rem);
+                    flex-shrink: 0;
+
+                    .price {
+                        white-space: nowrap;
+                        font-size: $font-size-xxl;
+                    }
+
+                    .numCount {
+                        display: flex;
+                        gap: clamp(0.3rem, 0.5vw, 0.8rem);
+                        align-items: center;
+
+                        .add,
+                        .minus {
+                            width: clamp(16px, 1.5vw, 22px);
+                            height: auto;
+                        }
+
+                        .num {
+                            @extend %flex-center;
+                            width: clamp(35px, 3.5vw, 50px);
+                            height: clamp(25px, 2.5vw, 35px);
+                            background-color: $color-pink-light;
+                            border-radius: $radius-s;
+                            font-size: $font-size-l;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* 總計及結帳按鈕 */
+        .totalCheck {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: clamp(0.8rem, 1vw, 1.5rem);
+            margin-top: clamp(1.5rem, 2vw, 2.5rem);
+            font-family: $font-I;
+
+            .total {
+                font-size: $font-size-xxxl;
+            }
+
+            .currency {
+                font-size: $font-size-l;
+            }
+
+            .price {
+                font-size: clamp(4rem, 4.5vw, 6.5rem);
+            }
+
+            .next-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                font-family: $font-I;
+                background-color: $color-primary;
+                border: none;
+                border-radius: clamp(20px, 2.5vw, 35px);
+                padding: clamp(8px, 1vw, 14px);
+                cursor: pointer;
+                gap: clamp(4px, 0.5vw, 8px);
+
+                img {
+                    width: clamp(35px, 3.5vw, 55px);
+                    height: auto;
+                }
+
+                p {
+                    font-size: $font-size-s;
+                }
+
+                box-shadow: 3px 3px 5px 0px rgba(56, 56, 56, 0.30),
+                -4px -4px 10px 0px rgba(255, 255, 255, 0.40),
+                3px 3px 3px 0px rgba(255, 255, 255, 0.90) inset,
+                -5px -5px 10px 0px rgba(56, 56, 56, 0.30) inset;
+            }
+        }
+    }
+
+    /* Step 2:輸入地址 */
+    .step2 {
+
+        /* 按鈕區 */
+        .btn-all {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: clamp(1rem, 2vw, 2rem);
+        }
+
+        /* 表單區 */
+        #address-form {
+            font-family: $font-I;
+            display: flex;
+            gap: clamp(1.5rem, 2vw, 2.5rem);
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 0 clamp(2%, 3%, 5%);
+
+            .col1,
+            .col2 {
+                flex: 1;
+                min-width: clamp(280px, 35vw, 380px);
+                display: flex;
+                flex-direction: column;
+                gap: clamp(0.4rem, 0.5vw, 0.8rem);
+            }
+
+            label {
+                font-size: $font-size-m;
+                color: $color-charcoal;
+                text-align: left;
+            }
+
+            input,
+            select {
+                padding: clamp(0.4rem, 0.6vw, 0.8rem) clamp(0.8rem, 1vw, 1.2rem);
+                font-size: $font-size-m;
+                border-radius: clamp(6px, 0.8vw, 10px);
+                border: 1px solid $color-deep-gray;
+
+                &::placeholder {
+                    font-family: $font-I;
+                    color: $color-deep-gray;
+                }
+            }
+
+            select {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-image: url('/project_stupidVibe/merch/icon/arrow-down-icon.svg');
+                background-repeat: no-repeat;
+                background-position: right 1rem center;
+                background-size: clamp(12px, 1.2vw, 18px);
+            }
+        }
+    }
+
+    /* Step 3:付款資訊 */
+    .step3 {
+
+        // 按鈕+右側顯示付款方式
+        .btn-payment {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            color: $color-charcoal;
+            padding-bottom: clamp(20px, 2vw, 30px);
+
+            .payment-text {
+                span {
+                    display: block;
+                    width: fit-content;
+                    font-size: $font-size-l;
+                    font-family: $font-I;
+                }
+            }
+        }
+
+        // 付款所有內容區
+        .payment-content-all {
+            display: flex;
+            width: 100%;
+            height: 70%;
+            gap: clamp(4%, 5%, 7%);
+
+            label {
+                font-family: $font-I;
+                color: $color-charcoal;
+            }
+
+            img {
+                width: clamp(35px, 3.5vw, 55px);
+                height: auto;
+            }
+
+            // col-left-all
+            .payment-total {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                // 選擇付款方式
+                .payment-selection {
+                    display: flex;
+                    flex-direction: column;
+                    gap: clamp(15px, 1.8vw, 25px);
+                    border: none;
+
+                    label {
+                        font-size: $font-size-l;
+                    }
+
+                    .row1,
+                    .row2,
+                    .row3 {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .option {
+                            display: flex;
+                            align-items: center;
+                            gap: clamp(8px, 1vw, 12px);
+
+                            input[type="radio"] {
+                                width: clamp(16px, 1.5vw, 20px);
+                                height: clamp(16px, 1.5vw, 20px);
+                            }
+                        }
+
+                        .icon {
+                            display: flex;
+                            gap: clamp(8px, 1vw, 12px);
+                        }
+                    }
+                }
+
+                // 總價顯示
+                .total-price {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    font-family: $font-I;
+                    gap: clamp(8px, 1vw, 12px);
+
+                    .currency {
+                        font-size: $font-size-l;
+                    }
+
+                    .total {
+                        font-size: clamp(4rem, 4.5vw, 6.5rem);
+                    }
+                }
+            }
+
+            // col-right-all
+            .creditCard-and-btn {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 95%;
+
+                // 輸入卡號區（粉色背景）
+                .creditCard-input-all {
+                    padding: clamp(15px, 2vw, 30px) clamp(20px, 2.5vw, 35px);
+                    background-color: $color-pink-light;
+                    border-radius: clamp(15px, 2vw, 25px);
+
+                    // icon
+                    .icon {
+                        display: flex;
+                        gap: clamp(8px, 1vw, 12px);
+                        padding-bottom: clamp(12px, 1.5vw, 20px);
+                    }
+
+                    // 卡號填寫
+                    .input-credit {
+                        input {
+                            height: clamp(30px, 3vw, 40px);
+                            background-color: $color-light;
+                            border: 1px solid $color-charcoal;
+                            border-radius: $radius-m;
+                            padding: 0 clamp(8px, 1vw, 12px);
+                            font-size: $font-size-m;
+                        }
+
+                        label {
+                            font-size: $font-size-m;
+                        }
+
+                        .row1,
+                        .col1,
+                        .col2 {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            gap: clamp(8px, 1vw, 15px);
+                        }
+
+                        .row2 {
+                            display: flex;
+                            gap: clamp(0.8rem, 1vw, 1.5rem);
+                            margin-top: clamp(12px, 1.5vw, 20px);
+
+                            .col1,
+                            .col2 {
+                                flex: 1;
+                            }
+                        }
+
+                        .card-number,
+                        .card-cvc,
+                        .card-expiry {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                // 按鈕區
+                .checkout-btn {
+                    cursor: pointer;
+                    width: 100%;
+                    padding: clamp(8px, 1vw, 14px);
+                    border-radius: 100px;
+                    border: none;
+                    background: var(--Primary, #ECB3CB);
+                    box-shadow: 3px 3px 5px 0px rgba(56, 56, 56, 0.30),
+                        -4px -4px 10px 0px rgba(255, 255, 255, 0.40),
+                        3px 3px 3px 0px rgba(255, 255, 255, 0.90) inset,
+                        -5px -5px 10px 0px rgba(56, 56, 56, 0.30) inset;
+
+                    p {
+                        font-size: $font-size-m;
+                        font-family: $font-I;
+                        color: $color-charcoal;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+
+    /* Step 4:處理中 */
+    .step4 {
+        justify-content: center;
+        align-items: center;
+
+        .all-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(20px, 2.5vw, 35px);
+            padding-bottom: clamp(50px, 6vw, 90px);
+
+            h2 {
+                font-size: $font-size-h2;
+                color: $color-charcoal;
+                margin-bottom: clamp(20px, 2.5vw, 40px);
+            }
+
+            // Loading animation responsive size
+            l-leapfrog {
+                width: clamp(80px, 8vw, 140px) !important;
+                height: clamp(80px, 8vw, 140px) !important;
+            }
+
+            p {
+                font-family: $font-I;
+                font-size: $font-size-m;
+                color: $color-charcoal;
+            }
+        }
+    }
+
+    /* Step 5:完成畫面 */
+    .step5 {
+        justify-content: space-between;
+
+        .cart-container {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .cart-all {
+                max-width: clamp(200px, 25vw, 350px);
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .btn-notice {
+            align-self: flex-end;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: clamp(0.8rem, 1vw, 1.5rem);
+            font-family: $font-I;
+            color: $color-charcoal;
+
+            button {
+                cursor: pointer;
+                font-family: $font-I;
+                color: $color-charcoal;
+                font-size: $font-size-m;
+                width: clamp(120px, 15vw, 200px);
+                padding: clamp(8px, 1vw, 14px);
+                border-radius: 100px;
+                border: none;
+                background: var(--Primary, #ECB3CB);
+                box-shadow: 3px 3px 5px 0px rgba(56, 56, 56, 0.30),
+                    -4px -4px 10px 0px rgba(255, 255, 255, 0.40),
+                    3px 3px 3px 0px rgba(255, 255, 255, 0.90) inset,
+                    -5px -5px 10px 0px rgba(56, 56, 56, 0.30) inset;
+            }
+
+            p {
+                font-size: $font-size-s;
+                text-align: right;
+            }
+        }
+    }
+}
+
+/* 活動狀態 */
+.cart-step.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* 卡片動畫 */
+@keyframes popup-slide-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes popup-slide-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+/* 細部調整的響應式斷點 */
+
+/* 1024-1200px */
+@media (max-width: 1200px) and (min-width: 1024px) {
+    .cart-popup {
+        // .step1 {
+        //     .item-list {
+        //         .item {
+        //             .item-name {
+        //                 font-size: clamp(0.85rem, 1vw, 1.1rem);
+        //             }
+        //         }
+        //     }
+        // }
+
+        .step2 {
+            #address-form {
+
+                .col1,
+                .col2 {
+                    min-width: 300px;
+                }
+            }
+        }
+    }
+}
+
+/* 1600px+ 大螢幕優化 */
+@media (min-width: 1600px) {
+    .cart-popup {
+        .cart-step {
+            top: 22%;
+            left: 18%;
+            width: 66%;
+        }
+    }
+}
