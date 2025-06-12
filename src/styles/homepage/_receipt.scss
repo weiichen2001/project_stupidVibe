@@ -55,7 +55,7 @@
 .receipt-paper {
   width: 581px;
   height: 773px;
-  padding: 10%;
+  padding: 7%;
   background-image: url("./images/receipt/paper-texture.png");
   background-size: cover;
   position: absolute;
@@ -143,6 +143,7 @@
     opacity: 0;
     transform: translateX(-20px);
     transition: all 0.3s ease-out;
+    white-space: nowrap;
 
     span {
       font-size: $font-size-l;

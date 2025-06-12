@@ -92,7 +92,7 @@ export default function Receipt() {
                   key={index}
                   className={`receipt-item ${index < visibleItems ? 'show' : ''}`}
                 >
-                  {item} <span>NT 420</span>
+                  {item} <span>USD $2.00</span>
                 </li>
               ))}
             </ul>
