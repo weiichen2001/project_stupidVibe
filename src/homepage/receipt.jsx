@@ -98,7 +98,7 @@ export default function Receipt() {
             </ul>
             <hr />
             <p className={`total ${showTotal ? 'show' : ''}`}>
-              Total <span>NT 1,260</span>
+              Total <span>USD $8.00</span>
             </p>
             <hr />
             <p className={`thank-you ${showThankYou ? 'show' : ''}`}>THANK YOU</p>

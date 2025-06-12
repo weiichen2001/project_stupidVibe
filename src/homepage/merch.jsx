@@ -71,9 +71,9 @@ export default function MerchSection({ onGetReceipt, cartBtnRef }) {
                     <div className="bottom-row">
                       <p className="price">USD  {item.card.price}</p>
                       <div className="numCount">
-                        <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
-                        <div className="num">02</div>
                         <img src="./images/merch/icon/minus-icon.svg" alt="icon-minus" className="minus" />
+                        <div className="num">02</div>
+                        <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
                       </div>
                       <div className="btn-all">
                         <button className="addCart">

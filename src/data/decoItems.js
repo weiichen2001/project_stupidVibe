@@ -270,6 +270,12 @@ const decoItems = {
             src: "./images/decorate-items/albums/album-20.jpg",
             widthRatio: 0.08,
         },
+        {
+            id: "al21",
+            name: "album-21",
+            src: "./images/decorate-items/albums/album-21.jpg",
+            widthRatio: 0.08,
+        },
     ],
 
     // 海報

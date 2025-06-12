@@ -56,9 +56,9 @@ export default function CartSteps({onGetReceipt,animateOut}) {
                             <div className="priceNum">
                                 <p className="price">USD 2.00</p>
                                 <div className="numCount">
-                                    <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
-                                    <div className="num">02</div>
                                     <img src="./images/merch/icon/minus-icon.svg" alt="icon-minus" className="minus" />
+                                    <div className="num">02</div>
+                                    <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
                                 </div>
                             </div>
                         </div>
@@ -72,9 +72,9 @@ export default function CartSteps({onGetReceipt,animateOut}) {
                             <div className="priceNum">
                                 <p className="price">USD 2.50</p>
                                 <div className="numCount">
-                                    <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
-                                    <div className="num">01</div>
                                     <img src="./images/merch/icon/minus-icon.svg" alt="icon-minus" className="minus" />
+                                    <div className="num">01</div>
+                                    <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
                                 </div>
                             </div>
                         </div>
@@ -88,9 +88,9 @@ export default function CartSteps({onGetReceipt,animateOut}) {
                             <div className="priceNum">
                                 <p className="price">USD 2.50</p>
                                 <div className="numCount">
-                                    <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
-                                    <div className="num">04</div>
                                     <img src="./images/merch/icon/minus-icon.svg" alt="icon-minus" className="minus" />
+                                    <div className="num">05</div>
+                                    <img src="./images/merch/icon/add-icon.svg" alt="icon-add" className="add" />
                                 </div>
                             </div>
                         </div>
