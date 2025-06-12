@@ -72,7 +72,21 @@ export default function HeroWithIntro({ onAnimationComplete, triggerKey = 0, onM
         </video>
       </div>
 
-      <h1>HAPPY HOSHI DAY</h1>
+      <div className="all-title">
+        <div className="date">
+          <img src="./images/hero/date.png" alt="date" className="date-img" />
+        </div>
+        <div className="title">
+          <img src="./images/hero/happyHoshiDay.png" alt="happyHoshiDay" className="event-name" />
+        </div>
+        <h1>HAPPY HOSHI DAY</h1>
+
+      </div>
+      <div className="photos">
+        <img src="./images/hero/hoshi-lying.png" alt="hoshi-lying" className="hoshi-lying" />
+        <img src="./images/hero/latte.png" alt="latte" className="latte" />
+      </div>
+
 
       {/* CTA 按鈕區塊 */}
       <div className={`cta ${showIntro ? 'cta-hidden' : 'cta-visible'}`}>
